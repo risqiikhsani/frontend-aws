@@ -30,13 +30,13 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
           fontSans.variable
         )}
       >
-        <AuthHandler>
+        {/* <AuthHandler> */}
           <Toaster />
           <div className="flex-col ">
             <AppBar />
             {children}
           </div>
-        </AuthHandler>
+        {/* </AuthHandler> */}
       </body>
     </html>
   );
