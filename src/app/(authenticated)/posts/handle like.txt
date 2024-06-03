@@ -1,0 +1,92 @@
+To implement a "liked" attribute for posts similar to Facebook, where the like button changes color based on whether the user has liked the post or not, you can follow these steps:
+
+1. **Maintain a User-Likes Table**: Create a separate table to keep track of which users have liked which posts. This table could have a structure like:
+
+    ```json
+    {
+        "user_id": "string",
+        "post_id": "string",
+        "timestamp": "string"  // Optional: when the like was made
+    }
+    ```
+
+2. **Fetch Posts with Like Status**: When you fetch posts, you need to determine if the current user has liked each post. This can be achieved by querying the User-Likes table alongside the Posts table.
+
+### Steps to Fetch Posts with Like Status
+
+1. **Query the Posts Table**: Fetch the list of posts as you normally would.
+
+2. **Query the User-Likes Table**: Fetch the likes for the current user for the list of post IDs you retrieved.
+
+3. **Combine Results**: Merge the results to determine if the user has liked each post.
+
+### Example Workflow
+
+1. **Fetching Posts**: Assume you have fetched a list of posts from the `Posts` table:
+
+    ```json
+    [
+        { "post_id": "1", "post_text": "Post 1", "post_creator": "UserA" },
+        { "post_id": "2", "post_text": "Post 2", "post_creator": "UserB" }
+    ]
+    ```
+
+2. **Fetching Likes for the User**: Query the `User-Likes` table for the current user and the post IDs you fetched:
+
+    ```sql
+    SELECT post_id FROM UserLikes WHERE user_id = :currentUserId AND post_id IN (:listOfPostIds)
+    ```
+
+    Assume the current user has liked "Post 1":
+
+    ```json
+    [
+        { "post_id": "1" }
+    ]
+    ```
+
+3. **Merging Results**: Combine the results to indicate whether the user has liked each post:
+
+    ```json
+    [
+        { "post_id": "1", "post_text": "Post 1", "post_creator": "UserA", "liked": true },
+        { "post_id": "2", "post_text": "Post 2", "post_creator": "UserB", "liked": false }
+    ]
+    ```
+
+### Implementation Example with Pseudo-code
+
+```python
+# Fetch posts from the Posts table
+posts = dynamodb.query(
+    TableName='Posts',
+    ProjectionExpression='post_id, post_text, post_creator'
+)
+
+# Extract post IDs
+post_ids = [post['post_id'] for post in posts['Items']]
+
+# Fetch user likes from the UserLikes table
+user_likes = dynamodb.query(
+    TableName='UserLikes',
+    KeyConditionExpression=Key('user_id').eq(current_user_id) & Key('post_id').is_in(post_ids),
+    ProjectionExpression='post_id'
+)
+
+# Create a set of post IDs that the user has liked
+liked_post_ids = set(like['post_id'] for like in user_likes['Items'])
+
+# Combine results
+for post in posts['Items']:
+    post['liked'] = post['post_id'] in liked_post_ids
+
+# Now, posts contains the liked status for each post
+```
+
+### Optimizing the Process
+
+- **Batch Queries**: Use batch queries to minimize the number of round trips to DynamoDB.
+- **Caching**: Cache the like status for a short period to reduce load if the same data is requested frequently.
+- **Indexes**: Ensure that the `User-Likes` table is indexed on `user_id` and `post_id` to speed up the query.
+
+By following this approach, you can efficiently fetch posts along with the like status for the current user, enabling a seamless and responsive user experience similar to what Facebook offers.

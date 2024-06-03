@@ -6,22 +6,71 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-
+import { Button } from "@/components/ui/button"
+import { ChatBubbleOvalLeftEllipsisIcon, HeartIcon, ShareIcon } from "@heroicons/react/24/outline"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Separator } from "@/components/ui/separator"
+import { EllipsisVerticalIcon } from "@heroicons/react/16/solid"
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
 
 export default function Post() {
     return (
-        <Card className="my-4">
-            <CardHeader>
-                <CardTitle>Card Title</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <p>Card Content</p>
-            </CardContent>
-            <CardFooter>
-                <p>Card Footer</p>
-            </CardFooter>
-        </Card>
+        <>
+            <Card className="my-4">
+                <div className="p-2 flex justify-left items-start gap-4">
+                    <Button variant="outline" className="flex gap-2 justify-center items-center p-6 rounded-xl">
+                        <Avatar>
+                            <AvatarImage src="https://github.com/shadcn.png" />
+                            <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                        <p>Kevin</p>
+                    </Button>
 
+                    <div className="flex-1">
+                    </div>
+                    <CardDescription>3 June 2024</CardDescription>
+                    <Button variant="outline" size="icon">
+                        <EllipsisVerticalIcon className="h-4 w-4" />
+                    </Button>
+                </div>
+     
+                {/* 
+                <CardHeader>
+                    <CardTitle>Card Title</CardTitle>
+                    <CardDescription>Card Description</CardDescription>
+                </CardHeader> */}
+                <CardContent>
+                    <p>Card Content</p>
+                </CardContent>
+    
+                <div className="flex justify-between p-2">
+                    <div className="flex justify-center items-center gap-2">
+                        <Button variant="outline" size="icon">
+                            <HeartIcon className="h-4 w-4" />
+                        </Button>
+                        <p>112 likes</p>
+                    </div>
+                    <Button variant="outline" size="icon">
+                        <ShareIcon className="h-4 w-4" />
+                    </Button>
+
+                </div>
+            
+                <Accordion type="single" collapsible className="px-4">
+                    <AccordionItem value="item-1">
+                        <AccordionTrigger>2 comments</AccordionTrigger>
+                        <AccordionContent>
+                            Yes. It adheres to the WAI-ARIA design pattern.
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>
+            </Card>
+
+        </>
     )
 }
