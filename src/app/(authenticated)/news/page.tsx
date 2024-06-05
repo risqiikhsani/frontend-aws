@@ -16,40 +16,54 @@ import {
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
-  } from "@/components/ui/accordion"
-  
+} from "@/components/ui/accordion"
+import Link from "next/link"
+import Image from "next/image"
 
 
-export default function Page() {
+
+export default async function Page() {
+    const dynamicData = await fetch(`https://c27skmgaxj.execute-api.ap-southeast-2.amazonaws.com/dev/news`, { cache: 'no-store' })
+    const data = await dynamicData.json();
+
     return (
         <>
             <p>News page</p>
-            <Card>
-                <div className="p-2 flex justify-left items-center gap-4">
-                    <Button variant="ghost" className="flex gap-2 justify-center items-center p-6">
-                        <Avatar>
-                            <AvatarImage src="https://github.com/shadcn.png" />
-                            <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
-                        <p>Kevin</p>
-                    </Button>
+            {data ? (
+                data.articles.map((item: any, index: any) => (
+                    <Card key={index} className="my-4">
+                        <CardHeader>
+                            <div className="flex justify-left items-center gap-4">
 
-                    <div className="flex-1">
-                    </div>
-                    <CardDescription>3 June 2024</CardDescription>
-                    <Button variant="outline" size="icon">
-                        <EllipsisVerticalIcon className="h-4 w-4" />
-                    </Button>
-                </div>
+                                <p>Author : {item.author}</p>
 
-                <CardHeader>
-                    <CardTitle>Card Title</CardTitle>
-                    <CardDescription>Card Description</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <p>Card Content</p>
-                </CardContent>
-            </Card>
+
+                                <div className="flex-1">
+                                </div>
+                                <CardDescription>{item.publishedAt}</CardDescription>
+                                <Button variant="outline" size="icon">
+                                    <EllipsisVerticalIcon className="h-4 w-4" />
+                                </Button>
+                            </div>
+
+                            <p className="font-bold underline">{item.source.name}</p>
+
+                            <CardTitle>{item.title}</CardTitle>
+                            {item.urlToImage ? <Image src={item.urlToImage} width={300} height={300} alt="image" className="rounded-md" /> : null}
+                            <CardDescription>{item.description}</CardDescription>
+                        </CardHeader>
+                        <CardContent className="flex">
+                        <div className="flex-grow"></div>
+                            <Button asChild>
+                                <Link href={item.url}>visit</Link>
+                            </Button>
+                        </CardContent>
+                    </Card>
+                ))
+            ) : (
+                <p>Loading...</p>
+            )}
+
 
         </>
     )
