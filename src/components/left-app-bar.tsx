@@ -6,7 +6,7 @@ import { Separator } from "./ui/separator";
 export default function LeftAppBar() {
     return (
         <>
-            <div className="fixed w-64 flex-col hidden md:flex h-screen px-4 pt-24 overflow-auto bg-slate-50 border-r border-gray-200 shadow-md">
+            <div className="fixed w-64 flex-col hidden md:flex h-screen px-4 pt-24 overflow-auto border-r border-gray-200 shadow-md bg-[#90e0ef]">
                 <nav className="flex flex-col space-y-2 mt-4">
                 <Button asChild variant="outline">
                     <Link href="/news">

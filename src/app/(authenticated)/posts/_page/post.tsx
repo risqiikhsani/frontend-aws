@@ -10,15 +10,19 @@ import { Button } from "@/components/ui/button"
 import { ChatBubbleOvalLeftEllipsisIcon, HeartIcon, ShareIcon } from "@heroicons/react/24/outline"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
-import { EllipsisVerticalIcon } from "@heroicons/react/16/solid"
+import { EllipsisVerticalIcon, PencilIcon, TrashIcon } from "@heroicons/react/16/solid"
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+import UpdatePost from "./update-post"
+import DeletePost from "./delete-post"
 
-export default function Post() {
+
+
+export default function Post({data}:{data: any}) {
     return (
         <>
             <Card className="my-4">
@@ -28,15 +32,14 @@ export default function Post() {
                             <AvatarImage src="https://github.com/shadcn.png" />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
-                        <p>Kevin</p>
+                        <p>{data.user}</p>
                     </Button>
 
                     <div className="flex-1">
                     </div>
-                    <CardDescription>3 June 2024</CardDescription>
-                    <Button variant="outline" size="icon">
-                        <EllipsisVerticalIcon className="h-4 w-4" />
-                    </Button>
+                    <CardDescription>{data.time_creation}</CardDescription>
+                    <UpdatePost data={data}/>
+                    <DeletePost data={data}/>
                 </div>
      
                 {/* 
@@ -45,17 +48,17 @@ export default function Post() {
                     <CardDescription>Card Description</CardDescription>
                 </CardHeader> */}
                 <CardContent>
-                    <p>Card Content</p>
+                    <p>{data.text}</p>
                 </CardContent>
     
                 <div className="flex justify-between p-2">
                     <div className="flex justify-center items-center gap-2">
-                        <Button variant="outline" size="icon">
+                        <Button variant="outline" size="icon" className="rounded-full">
                             <HeartIcon className="h-4 w-4" />
                         </Button>
                         <p>112 likes</p>
                     </div>
-                    <Button variant="outline" size="icon">
+                    <Button variant="outline" size="icon" className="rounded-full">
                         <ShareIcon className="h-4 w-4" />
                     </Button>
 

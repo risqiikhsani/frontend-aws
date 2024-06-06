@@ -22,7 +22,7 @@ export default function AppBar() {
     const { user } = useAuth()
     return (
 
-        <div className="flex items-center justify-between p-4 shadow-md fixed w-full top-0 start-0 border-b border-gray-200 z-40 bg-slate-50">
+        <div className="flex items-center justify-between p-4 shadow-md fixed w-full top-0 start-0 z-40 bg-[#90e0ef]">
             <div className="flex gap-4">
 
                 <Sheet>

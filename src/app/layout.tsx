@@ -31,7 +31,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
         )}
       >
         {/* <AuthHandler> */}
-          <Toaster />
+          <Toaster richColors />
           <div className="flex-col ">
             <AppBar />
             {children}

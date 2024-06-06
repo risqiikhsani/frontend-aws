@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button"
 
-import Post from "@/components/post"
+import Post from "./_page/post"
 
 import {
     Dialog,
@@ -11,30 +11,21 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+import CreatePost from "./_page/create-post";
 
 
 
-export default function Page() {
+export default async function Page() {
+    const dynamicData = await fetch(`https://c27skmgaxj.execute-api.ap-southeast-2.amazonaws.com/dev/posts`, { cache: 'no-store' })
+    const data = await dynamicData.json();
+
     return (
         <>
-            <Dialog>
-                <DialogTrigger>Create Post</DialogTrigger>
-                <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>Are you absolutely sure?</DialogTitle>
-                        <DialogDescription>
-                            This action cannot be undone. This will permanently delete your account
-                            and remove your data from our servers.
-                        </DialogDescription>
-                    </DialogHeader>
-                </DialogContent>
-            </Dialog>
+            <CreatePost/>
 
-
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+            {data && data.map((post: any) => (
+                <Post key={post.id} data={post} />
+            ))}
         </>
     )
 }
