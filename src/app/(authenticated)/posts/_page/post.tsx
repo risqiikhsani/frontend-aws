@@ -87,7 +87,7 @@ export default function Post({ data }: { data: any }) {
                     <p>{data.text}</p>
                 </CardContent>
 
-                <CardFooter className="flex justify-between">
+                <div className="flex justify-between p-2">
                     <div className="flex justify-center items-center gap-2">
                         <Button variant="outline" size="icon" className="rounded-full">
                             <HeartIcon className="h-4 w-4" />
@@ -98,7 +98,7 @@ export default function Post({ data }: { data: any }) {
                         <ShareIcon className="h-4 w-4" />
                     </Button>
 
-                </CardFooter>
+                </div>
 
                 <Accordion type="single" collapsible className="px-4">
                     <AccordionItem value="item-1">
