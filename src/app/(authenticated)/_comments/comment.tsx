@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/accordion"
 import UpdateComment from "./update-comment"
 import DeleteComment from "./delete-comment"
+import { ConvertTime } from "@/lib/time"
 
 
 export default function Comment({data}:{data: any}) {
@@ -36,7 +37,7 @@ export default function Comment({data}:{data: any}) {
 
                     <div className="flex-1">
                     </div>
-                    <CardDescription>{data.time_creation}</CardDescription>
+                    <CardDescription>{ConvertTime(data.time_creation)}</CardDescription>
                     <UpdateComment data={data}/>
                     <DeleteComment data={data}/>
                 </div>
