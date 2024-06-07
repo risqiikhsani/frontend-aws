@@ -25,9 +25,9 @@ import { ConvertTime } from "@/lib/time"
 export default function Comment({data}:{data: any}) {
     return (
         <>
-            <Card className="my-4">
+            <Card className="my-4 border-double border-4 border-sky-500">
                 <div className="p-2 flex justify-left items-start gap-4">
-                    <Button variant="outline" className="flex gap-2 justify-center items-center p-6 rounded-xl">
+                    <Button variant="outline" className="flex gap-2 justify-center items-center">
                         <Avatar>
                             <AvatarImage src="https://github.com/shadcn.png" />
                             <AvatarFallback>CN</AvatarFallback>
@@ -64,14 +64,14 @@ export default function Comment({data}:{data: any}) {
 
                 </div>
             
-                <Accordion type="single" collapsible className="px-4">
+                {/* <Accordion type="single" collapsible className="px-4">
                     <AccordionItem value="item-1">
                         <AccordionTrigger>2 comments</AccordionTrigger>
                         <AccordionContent>
                             Yes. It adheres to the WAI-ARIA design pattern.
                         </AccordionContent>
                     </AccordionItem>
-                </Accordion>
+                </Accordion> */}
             </Card>
 
         </>

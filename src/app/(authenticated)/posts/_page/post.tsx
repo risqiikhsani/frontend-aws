@@ -27,7 +27,7 @@ import Comments from "../../_comments/comments"
 export default function Post({data}:{data: any}) {
     return (
         <>
-            <Card className="my-4">
+            <Card className="my-4 border-double border-4 border-sky-200">
                 <div className="p-2 flex justify-left items-start gap-4">
                     <Button variant="outline" className="flex gap-2 justify-center items-center p-6 rounded-xl">
                         <Avatar>

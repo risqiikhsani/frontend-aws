@@ -1,3 +1,6 @@
+
+
+
 "use client"
 
 import { Button } from "@/components/ui/button"
@@ -24,12 +27,14 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
+import { useQueryClient } from "@tanstack/react-query"
 
 const formSchema = z.object({
     text: z.string().min(10),
 })
 
 export default function CreateComment({post_id}:{post_id:string}) {
+    const queryClient = useQueryClient()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -54,6 +59,7 @@ export default function CreateComment({post_id}:{post_id:string}) {
                 console.log("Comment created successfully")
                 toast.success('Event has been created')
                 form.reset()
+                queryClient.invalidateQueries({ queryKey: ['comments',post_id] })
                 // You can handle the successful response here
             } else {
                 console.error("Failed to create Comment")

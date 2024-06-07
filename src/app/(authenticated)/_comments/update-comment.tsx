@@ -25,12 +25,14 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { PencilIcon } from "@heroicons/react/16/solid"
+import { useQueryClient } from "@tanstack/react-query"
 
 const formSchema = z.object({
     text: z.string().min(10),
 })
 
 export default function UpdateComment({data}:{data: any}) {
+    const queryClient = useQueryClient()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -55,6 +57,7 @@ export default function UpdateComment({data}:{data: any}) {
                 console.log("Comment updated successfully")
                 toast.success('Comment has been updated')
                 form.reset()
+                queryClient.invalidateQueries({ queryKey: ['comments',data.post_id] })
                 // You can handle the successful response here
             } else {
                 console.error("Failed to update Comment")

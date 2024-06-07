@@ -25,9 +25,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { TrashIcon } from "@heroicons/react/16/solid"
+import { useQueryClient } from "@tanstack/react-query"
 
 export default function DeleteComment({ data }: { data: any }) {
-
+    const queryClient = useQueryClient()
 
     const onSubmit = async () => {
         try {
@@ -44,7 +45,7 @@ export default function DeleteComment({ data }: { data: any }) {
             if (response.ok) {
                 console.log("Comment deleted successfully")
                 toast.success('Comment has been deleted')
-
+                queryClient.invalidateQueries({ queryKey: ['comments',data.post_id] })
                 // You can handle the successful response here
             } else {
                 console.error("Failed to delete Comment")
