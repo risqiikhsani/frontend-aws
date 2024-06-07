@@ -74,8 +74,8 @@ export default function UpdatePost({data}:{data: any}) {
         <>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button variant="outline" size="icon" className="rounded-full">
-                        <PencilIcon className="h-4 w-4" />
+                    <Button variant="outline" >
+                        <PencilIcon className="h-4 w-4 mr-2" /> Update
                     </Button>
                 </DialogTrigger>
                 <DialogContent>

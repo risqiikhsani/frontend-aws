@@ -63,8 +63,8 @@ export default function DeletePost({ data }: { data: any }) {
         <>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button variant="outline" size="icon" className="rounded-full">
-                        <TrashIcon className="h-4 w-4" />
+                    <Button variant="outline" >
+                        <TrashIcon className="h-4 w-4 mr-2" /> Delete
                     </Button>
                 </DialogTrigger>
                 <DialogContent>

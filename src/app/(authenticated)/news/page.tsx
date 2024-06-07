@@ -22,7 +22,7 @@ import Image from "next/image"
 import Filter from "./_page/filter"
 import { Suspense } from 'react';
 import { ConvertTime } from "@/lib/time"
-
+import { Badge } from "@/components/ui/badge"
 
 export default async function Page({
     searchParams,
@@ -46,10 +46,8 @@ export default async function Page({
                         <Card key={index} className="my-4">
                             <CardHeader>
                                 <div className="flex justify-left items-center gap-4">
-
-                                    <p>Author : {item.author}</p>
-
-
+                                    <Badge variant="outline">Author</Badge>
+                                    <p>{item.author}</p>
                                     <div className="flex-1">
                                     </div>
                                     <CardDescription>{ConvertTime(item.publishedAt)}</CardDescription>

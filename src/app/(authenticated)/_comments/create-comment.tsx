@@ -33,7 +33,7 @@ const formSchema = z.object({
     text: z.string().min(10),
 })
 
-export default function CreateComment({post_id}:{post_id:string}) {
+export default function CreateComment({ post_id }: { post_id: string }) {
     const queryClient = useQueryClient()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -59,7 +59,7 @@ export default function CreateComment({post_id}:{post_id:string}) {
                 console.log("Comment created successfully")
                 toast.success('Event has been created')
                 form.reset()
-                queryClient.invalidateQueries({ queryKey: ['comments',post_id] })
+                queryClient.invalidateQueries({ queryKey: ['comments', post_id] })
                 // You can handle the successful response here
             } else {
                 console.error("Failed to create Comment")
@@ -77,40 +77,38 @@ export default function CreateComment({post_id}:{post_id:string}) {
 
     return (
         <>
-            <Dialog>
+            {/* <Dialog>
                 <DialogTrigger asChild>
                     <Button>Create Comment</Button>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle className="mb-4">Make a new Comment</DialogTitle>
-                        <DialogDescription>
-                            <Form {...form}>
-                                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                                    <FormField
-                                        control={form.control}
-                                        name="text"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Text</FormLabel>
-                                                <FormControl>
-                                                    <Textarea placeholder="Show us your feelings" {...field} />
-                                                </FormControl>
-                                                <FormDescription>Write a Comment to publish.</FormDescription>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <DialogTrigger asChild>
-                                        <Button type="submit">Submit</Button>
-                                    </DialogTrigger>
+                        <DialogDescription> */}
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex items-end gap-2 p-2">
+                    <FormField
+                        control={form.control}
+                        name="text"
+                        render={({ field }) => (
+                            <FormItem className="w-full">
+                                <FormControl>
+                                    <Textarea placeholder="Write a comment" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    {/* <DialogTrigger asChild> */}
+                        <Button type="submit">Submit</Button>
+                    {/* </DialogTrigger> */}
 
-                                </form>
-                            </Form>
-                        </DialogDescription>
+                </form>
+            </Form>
+            {/* </DialogDescription>
                     </DialogHeader>
                 </DialogContent>
-            </Dialog>
+            </Dialog> */}
         </>
     )
 }
