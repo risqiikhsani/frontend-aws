@@ -21,6 +21,7 @@ import Link from "next/link"
 import Image from "next/image"
 import Filter from "./_page/filter"
 import { Suspense } from 'react';
+import { ConvertTime } from "@/lib/time"
 
 
 export default async function Page({
@@ -31,7 +32,7 @@ export default async function Page({
     };
 }) {
 
-    const country = searchParams?.country || '';
+    const country = searchParams?.country || 'us';
 
     const dynamicData = await fetch(`https://c27skmgaxj.execute-api.ap-southeast-2.amazonaws.com/dev/news?country=${country}`, { cache: 'no-store' })
     const data = await dynamicData.json();
@@ -51,7 +52,7 @@ export default async function Page({
 
                                     <div className="flex-1">
                                     </div>
-                                    <CardDescription>{item.publishedAt}</CardDescription>
+                                    <CardDescription>{ConvertTime(item.publishedAt)}</CardDescription>
                                     <Button variant="outline" size="icon">
                                         <EllipsisVerticalIcon className="h-4 w-4" />
                                     </Button>

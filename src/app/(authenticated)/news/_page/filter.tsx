@@ -40,8 +40,6 @@ export default function Filter() {
                     <SelectItem value="id">ID</SelectItem>
                 </SelectContent>
             </Select>
-
-            Selected Country: {country}
         </>
     )
 }

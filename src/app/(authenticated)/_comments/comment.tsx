@@ -17,14 +17,11 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
-import UpdatePost from "./update-post"
-import DeletePost from "./delete-post"
-import { Suspense } from "react"
-import Comments from "../../_comments/comments"
+import UpdateComment from "./update-comment"
+import DeleteComment from "./delete-comment"
 
 
-
-export default function Post({data}:{data: any}) {
+export default function Comment({data}:{data: any}) {
     return (
         <>
             <Card className="my-4">
@@ -40,8 +37,8 @@ export default function Post({data}:{data: any}) {
                     <div className="flex-1">
                     </div>
                     <CardDescription>{data.time_creation}</CardDescription>
-                    <UpdatePost data={data}/>
-                    <DeletePost data={data}/>
+                    <UpdateComment data={data}/>
+                    <DeleteComment data={data}/>
                 </div>
      
                 {/* 
@@ -70,9 +67,7 @@ export default function Post({data}:{data: any}) {
                     <AccordionItem value="item-1">
                         <AccordionTrigger>2 comments</AccordionTrigger>
                         <AccordionContent>
-                            <Suspense fallback={<p>loading comments...</p>}>
-                                <Comments post_id={data.id}/>
-                            </Suspense>
+                            Yes. It adheres to the WAI-ARIA design pattern.
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>
