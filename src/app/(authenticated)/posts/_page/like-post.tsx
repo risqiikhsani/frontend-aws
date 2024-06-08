@@ -12,6 +12,7 @@ export default function LikePost({ data }: { data: any }) {
     const queryClient = useQueryClient();
     const [numberLikes, setNumberLikes] = useState(0);
     const [likedByUser, setLikedByUser] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     // Determine if the post is liked by the user
     useEffect(() => {
@@ -21,6 +22,7 @@ export default function LikePost({ data }: { data: any }) {
     // Fetch the number of likes
     const fetchNumberLikes = async () => {
         try {
+            setIsLoading(true); // Set loading state to true
             const response = await fetch(
                 `https://c27skmgaxj.execute-api.ap-southeast-2.amazonaws.com/dev/likes/count?associated_id=${data.id}`,
                 {
@@ -39,6 +41,8 @@ export default function LikePost({ data }: { data: any }) {
             }
         } catch (error) {
             console.error("Error fetching number of likes:", error);
+        } finally {
+            setIsLoading(false); // Set loading state to false
         }
     };
 
@@ -113,7 +117,11 @@ export default function LikePost({ data }: { data: any }) {
                     )
                 }
             </Button>
-            <p>{numberLikes} likes</p>
+            {isLoading ? (
+                <p>Loading...</p>
+            ) : (
+                <p>{numberLikes} likes</p>
+            )}
         </div>
     );
 }
