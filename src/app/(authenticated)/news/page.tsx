@@ -43,23 +43,26 @@ export default async function Page({
             <Suspense key={country} fallback={<p>Loading...</p>}>
                 {data ? (
                     data.articles.map((item: any, index: any) => (
-                        <Card key={index} className="my-4">
+                        <Card key={index} className="my-4 border-double border-4 border-sky-200">
                             <CardHeader>
                                 <div className="flex justify-left items-center gap-4">
+                                    <div className="flex-col">
                                     <Badge variant="outline">Author</Badge>
                                     <p>{item.author}</p>
+                                    </div>
+
                                     <div className="flex-1">
                                     </div>
                                     <CardDescription>{ConvertTime(item.publishedAt)}</CardDescription>
-                                    <Button variant="outline" size="icon">
+                                    {/* <Button variant="ghost" size="icon">
                                         <EllipsisVerticalIcon className="h-4 w-4" />
-                                    </Button>
+                                    </Button> */}
                                 </div>
 
                                 <p className="font-bold underline">{item.source.name}</p>
 
                                 <CardTitle>{item.title}</CardTitle>
-                                {item.urlToImage ? <Image src={item.urlToImage} width={300} height={300} alt="image" className="rounded-md" /> : null}
+                                {item.urlToImage ? <Image src={item.urlToImage} width={1000} height={1000} alt="image" className="rounded-md w-full" /> : null}
                                 <CardDescription>{item.description}</CardDescription>
                             </CardHeader>
                             <CardContent className="flex">
