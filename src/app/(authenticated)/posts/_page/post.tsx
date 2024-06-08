@@ -1,3 +1,4 @@
+
 import {
     Card,
     CardContent,
@@ -19,7 +20,7 @@ import {
 } from "@/components/ui/accordion"
 import UpdatePost from "./update-post"
 import DeletePost from "./delete-post"
-import { Suspense } from "react"
+import { Suspense, useEffect } from "react"
 import Comments from "../../_comments/comments"
 import { ConvertTime } from "@/lib/time"
 import {
@@ -32,10 +33,15 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer"
+import { useApp } from "@/context/app"
+import LikePost from "./like-post"
 
 
 
 export default function Post({ data }: { data: any }) {
+
+
+
     return (
         <>
             <Card className="my-4 border-double border-4 border-sky-200">
@@ -59,11 +65,11 @@ export default function Post({ data }: { data: any }) {
                         </DrawerTrigger>
                         <DrawerContent>
                             <DrawerHeader>
-                                
-                                
-                                    <UpdatePost data={data} />
-                                    <DeletePost data={data} />
-                                
+
+
+                                <UpdatePost data={data} />
+                                <DeletePost data={data} />
+
                             </DrawerHeader>
                             <DrawerFooter>
 
@@ -77,7 +83,7 @@ export default function Post({ data }: { data: any }) {
                     {/* <UpdatePost data={data} />
                     <DeletePost data={data} /> */}
                 </div>
-                <Separator/>
+                <Separator />
                 {/* 
                 <CardHeader>
                     <CardTitle>Card Title</CardTitle>
@@ -88,12 +94,7 @@ export default function Post({ data }: { data: any }) {
                 </CardContent>
 
                 <div className="flex justify-between p-2">
-                    <div className="flex justify-center items-center gap-2">
-                        <Button variant="outline" size="icon" className="rounded-full">
-                            <HeartIcon className="h-4 w-4" />
-                        </Button>
-                        <p>112 likes</p>
-                    </div>
+                    <LikePost data={data} />
                     <Button variant="outline" size="icon" className="rounded-full">
                         <ShareIcon className="h-4 w-4" />
                     </Button>

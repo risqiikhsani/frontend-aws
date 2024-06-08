@@ -9,6 +9,7 @@ import RightAppBar from "@/components/right-app-bar";
 import { Toaster } from 'sonner'
 import { AuthHandler } from "@/context/auth";
 import ReactQueryClientProvider from "@/context/react-query-client-provider";
+import { AppHandler } from "@/context/app";
 
 
 const fontSans = FontSans({
@@ -35,11 +36,13 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
         <ReactQueryClientProvider>
 
           {/* <AuthHandler> */}
+          <AppHandler>
           <Toaster richColors />
           <div className="flex-col ">
             <AppBar />
             {children}
           </div>
+          </AppHandler>
           {/* </AuthHandler> */}
 
         </ReactQueryClientProvider>
