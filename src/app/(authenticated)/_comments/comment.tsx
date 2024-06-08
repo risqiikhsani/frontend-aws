@@ -30,6 +30,7 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer"
+import LikeComment from "./like-comment"
 
 
 export default function Comment({ data }: { data: any }) {
@@ -80,12 +81,7 @@ export default function Comment({ data }: { data: any }) {
                 </CardContent>
 
                 <div className="flex justify-left p-2">
-                    <div className="flex justify-center items-center gap-2">
-                        <Button variant="outline" size="icon" className="rounded-full">
-                            <HeartIcon className="h-4 w-4" />
-                        </Button>
-                        <p>112 likes</p>
-                    </div>
+                    <LikeComment data={data}/>
                 </div>
 
                 {/* <Accordion type="single" collapsible className="px-4">
