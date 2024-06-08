@@ -24,12 +24,14 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
+import { useQueryClient } from "@tanstack/react-query"
 
 const formSchema = z.object({
     text: z.string().min(10),
 })
 
 export default function CreatePost() {
+    const queryClient = useQueryClient()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -40,7 +42,7 @@ export default function CreatePost() {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const response = await fetch(
-                "https://c27skmgaxj.execute-api.ap-southeast-2.amazonaws.com/dev/posts",
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/posts`,
                 {
                     method: "POST",
                     headers: {
@@ -54,6 +56,7 @@ export default function CreatePost() {
                 console.log("Post created successfully")
                 toast.success('Event has been created')
                 form.reset()
+                
                 // You can handle the successful response here
             } else {
                 console.error("Failed to create post")

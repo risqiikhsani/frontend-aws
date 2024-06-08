@@ -16,7 +16,7 @@ import CreatePost from "./_page/create-post";
 
 
 export default async function Page() {
-    const dynamicData = await fetch(`https://c27skmgaxj.execute-api.ap-southeast-2.amazonaws.com/dev/posts`, { cache: 'no-store' })
+    const dynamicData = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/posts`, { cache: 'no-store' })
     const data = await dynamicData.json();
 
     return (
