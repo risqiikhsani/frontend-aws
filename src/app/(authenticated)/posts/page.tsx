@@ -1,4 +1,4 @@
-
+"use client"
 import { Button } from "@/components/ui/button"
 
 import Post from "./_page/post"
@@ -12,12 +12,20 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import CreatePost from "./_page/create-post";
+import { useQuery } from "@tanstack/react-query";
 
+const fetchPosts = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/posts`);
+    return res.json();
+  };
 
+export default function Page() {
+    // const dynamicData = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/posts`, { cache: 'no-store' })
+    // const data = await dynamicData.json();
 
-export default async function Page() {
-    const dynamicData = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/posts`, { cache: 'no-store' })
-    const data = await dynamicData.json();
+    const { data, isLoading, error } = useQuery({queryKey:['posts'],queryFn:fetchPosts});
+
+    if (isLoading) return <div>Loading...</div>;
 
     return (
         <>

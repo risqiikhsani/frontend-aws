@@ -48,7 +48,7 @@ export default function CreatePost() {
                 console.log("Post created successfully")
                 toast.success('Post has been created')
                 form.reset()
-                
+                queryClient.invalidateQueries({ queryKey: ['posts'] })
                 // You can handle the successful response here
             } else {
                 console.error("Failed to create post")
