@@ -25,6 +25,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { useQueryClient } from "@tanstack/react-query"
+import api from "@/lib/axios"
 
 const formSchema = z.object({
     text: z.string().min(10),
@@ -41,20 +42,11 @@ export default function CreatePost() {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/posts`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ text: values.text }),
-                }
-            )
+            const response = await api.post("/posts", { text: values.text })
 
-            if (response.ok) {
+            if (response.status === 200) {
                 console.log("Post created successfully")
-                toast.success('Event has been created')
+                toast.success('Post has been created')
                 form.reset()
                 
                 // You can handle the successful response here

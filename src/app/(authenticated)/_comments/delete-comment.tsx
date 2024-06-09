@@ -26,26 +26,19 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { TrashIcon } from "@heroicons/react/16/solid"
 import { useQueryClient } from "@tanstack/react-query"
+import api from "@/lib/axios"
 
 export default function DeleteComment({ data }: { data: any }) {
     const queryClient = useQueryClient()
 
     const onSubmit = async () => {
         try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/comments/${data.id}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    }
-                }
-            )
 
-            if (response.ok) {
+            const response = await api.delete(`/comments/${data.id}`)
+            if (response.status === 200) {
                 console.log("Comment deleted successfully")
                 toast.success('Comment has been deleted')
-                queryClient.invalidateQueries({ queryKey: ['comments',data.post_id] })
+                queryClient.invalidateQueries({ queryKey: ['comments', data.post_id] })
                 // You can handle the successful response here
             } else {
                 console.error("Failed to delete Comment")

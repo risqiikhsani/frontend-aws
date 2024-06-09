@@ -25,6 +25,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { PencilIcon } from "@heroicons/react/16/solid"
+import api from "@/lib/axios"
 
 const formSchema = z.object({
     text: z.string().min(10),
@@ -40,21 +41,13 @@ export default function UpdatePost({data}:{data: any}) {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/posts/${data.id}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ text: values.text }),
-                }
-            )
+            const response = await api.put(`/posts/${data.id}`, { text: values.text })
 
-            if (response.ok) {
+            if (response.status === 200) {
                 console.log("Post updated successfully")
                 toast.success('Post has been updated')
                 form.reset()
+                
                 // You can handle the successful response here
             } else {
                 console.error("Failed to update post")
@@ -63,7 +56,7 @@ export default function UpdatePost({data}:{data: any}) {
                 // You can handle the error here
             }
         } catch (error) {
-            console.error("Error update post:", error)
+            console.error("Error updating post:", error)
             toast.warning('Something went wrong')
             form.reset()
             // You can handle the error here

@@ -22,7 +22,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-
+import api from "@/lib/axios"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -44,18 +44,9 @@ export default function CreateComment({ post_id }: { post_id: string }) {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/comments?post_id=${post_id}`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ text: values.text }),
-                }
-            )
+            const response = await api.post(`/comments?post_id=${post_id}`,{ text: values.text })
 
-            if (response.ok) {
+            if (response.status === 200) {
                 console.log("Comment created successfully")
                 toast.success('Event has been created')
                 form.reset()

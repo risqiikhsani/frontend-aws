@@ -26,6 +26,7 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { PencilIcon } from "@heroicons/react/16/solid"
 import { useQueryClient } from "@tanstack/react-query"
+import api from "@/lib/axios"
 
 const formSchema = z.object({
     text: z.string().min(10),
@@ -42,18 +43,9 @@ export default function UpdateComment({data}:{data: any}) {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/comments/${data.id}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ text: values.text }),
-                }
-            )
+            const response = await api.put(`/comments/${data.id}`,{ text: values.text })
 
-            if (response.ok) {
+            if (response.status === 200) {
                 console.log("Comment updated successfully")
                 toast.success('Comment has been updated')
                 form.reset()

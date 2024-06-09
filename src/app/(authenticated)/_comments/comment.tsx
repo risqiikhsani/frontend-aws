@@ -43,7 +43,7 @@ export default function Comment({ data }: { data: any }) {
                             <AvatarImage src="https://github.com/shadcn.png" />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
-                        <p>{data.user}</p>
+                        <p>{data.user_detail.name}</p>
                     </Button>
 
                     <div className="flex-1">
@@ -57,6 +57,7 @@ export default function Comment({ data }: { data: any }) {
                         </DrawerTrigger>
                         <DrawerContent>
                             <DrawerHeader>
+                                
                                 <UpdateComment data={data} />
                                 <DeleteComment data={data} />
                             </DrawerHeader>

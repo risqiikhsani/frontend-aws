@@ -25,37 +25,25 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { TrashIcon } from "@heroicons/react/16/solid"
+import api from "@/lib/axios"
 
 export default function DeletePost({ data }: { data: any }) {
 
 
     const onSubmit = async () => {
         try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/posts/${data.id}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    }
-                }
-            )
+            const response = await api.delete(`/posts/${data.id}`)
 
-            if (response.ok) {
+            if (response.status === 200) {
                 console.log("Post deleted successfully")
                 toast.success('Post has been deleted')
-
-                // You can handle the successful response here
             } else {
                 console.error("Failed to delete post")
                 toast.warning('Failed to delete post')
-
-                // You can handle the error here
             }
         } catch (error) {
-            console.error("Error delete post:", error)
+            console.error("Error deleting post:", error)
             toast.warning('Something went wrong')
-            // You can handle the error here
         }
     }
 
