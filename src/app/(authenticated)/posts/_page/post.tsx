@@ -49,7 +49,7 @@ export default function Post({ data }: { data: any }) {
                 <div className="flex justify-left items-center gap-4">
                     <Button variant="ghost" className="flex gap-2 justify-center items-center py-6 rounded-xl">
                         <Avatar>
-                            <AvatarImage src="https://github.com/shadcn.png" />
+                            <AvatarImage src={data.user_detail.profile_image_url} />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
                         <p>{data.user_detail.name}</p>
