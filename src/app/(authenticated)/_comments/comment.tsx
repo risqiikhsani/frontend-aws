@@ -50,23 +50,7 @@ export default function Comment({ data }: { data: any }) {
                     <div className="flex-1">
                     </div>
                     <CardDescription className="mr-2">{ConvertTime(data.time_creation)}</CardDescription>
-                    <Drawer>
-                        <DrawerTrigger asChild>
-                            <MoreButtonComment data={data}/>
-                        </DrawerTrigger>
-                        <DrawerContent>
-                            <DrawerHeader>
-                                
-                                <UpdateComment data={data} />
-                                <DeleteComment data={data} />
-                            </DrawerHeader>
-                            <DrawerFooter>
-                                <DrawerClose>
-                                    <Button variant="outline">Cancel</Button>
-                                </DrawerClose>
-                            </DrawerFooter>
-                        </DrawerContent>
-                    </Drawer>
+                    <MoreButtonComment data={data}/>
 
                 </div>
                 <Separator/>

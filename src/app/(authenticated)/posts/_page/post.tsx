@@ -58,26 +58,7 @@ export default function Post({ data }: { data: any }) {
                     <div className="flex-1">
                     </div>
                     <CardDescription className="mr-2">{ConvertTime(data.time_creation)}</CardDescription>
-                    <Drawer>
-                        <DrawerTrigger asChild>
-                            <MoreButtonPost data={data}/>
-                        </DrawerTrigger>
-                        <DrawerContent>
-                            <DrawerHeader>
-
-                                
-                                <UpdatePost data={data} />
-                                <DeletePost data={data} />
-
-                            </DrawerHeader>
-                            <DrawerFooter>
-
-                                <DrawerClose>
-                                    <Button variant="outline">Cancel</Button>
-                                </DrawerClose>
-                            </DrawerFooter>
-                        </DrawerContent>
-                    </Drawer>
+                    <MoreButtonPost data={data}/>
 
                     {/* <UpdatePost data={data} />
                     <DeletePost data={data} /> */}

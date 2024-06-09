@@ -20,6 +20,7 @@ import { toast } from "sonner";
 
 export interface IAuthContext {
   // handleLoginSuccess: (data: any) => void;
+  fetchUserData: () => void;
   logoutUser: () => void;
   user: UserType;
   fetchData: () => void;
@@ -27,6 +28,7 @@ export interface IAuthContext {
 
 const authContextDefaultValues: IAuthContext = {
   // handleLoginSuccess: (data: any) => {},
+  fetchUserData: () => {},
   logoutUser: () => {},
   fetchData: () => {},
   user: {
@@ -65,6 +67,17 @@ export function AuthHandler({ children }: Props) {
       return false;
     }
   };
+
+  // const fetchUserData = async () => {
+  //   try {
+  //     const response = await api.get('my-profile');
+  //     return response.data;
+  //   } catch (error) {
+  //     toast.error('Error fetching user data');
+  //     console.error('Error:', error);
+  //     throw new Error('Error fetching user data');
+  //   }
+  // };
 
   const logoutUser = () => {
     Cookies.remove("accesstoken");
@@ -127,6 +140,7 @@ export function AuthHandler({ children }: Props) {
 
   const value = {
     // handleLoginSuccess,
+    fetchUserData,
     logoutUser,
     user,
     fetchData,

@@ -24,28 +24,32 @@ export default function AppBar() {
     return (
 
         <div className="flex items-center justify-between p-4 shadow-md fixed w-full top-0 start-0 z-40 bg-slate-100">
-            <div className="flex gap-4">
 
-                <Sheet>
-                    <SheetTrigger asChild className="md:hidden block">
-                        <Button variant="outline" size="icon">
-                            <Bars3Icon className="h-6 w-6 text-blue-500" />
-                        </Button>
-                    </SheetTrigger>
-                    <SheetContent side="left">
-                        <LeftAppBarMobile />
-                    </SheetContent>
-                </Sheet>
 
-                {user.id && (
+
+
+            {user.id && (
+                <div className="flex gap-4">
+                    <Sheet>
+                        <SheetTrigger className="md:hidden block">
+                            <Button variant="outline" size="icon" className="rounded-full">
+                                <Bars3Icon className="h-6 w-6 text-blue-500" />
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent side="left">
+                            <LeftAppBarMobile />
+                        </SheetContent>
+                    </Sheet>
                     <Button asChild variant="outline" size="icon">
                         <Link href="/">
                             <HomeIcon className="h-6 w-6 text-blue-500" />
                         </Link>
                     </Button>
-                )}
+                </div>
 
-            </div>
+            )}
+
+
 
             <div className="flex gap-4">
 

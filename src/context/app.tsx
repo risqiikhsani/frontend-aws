@@ -47,6 +47,11 @@ export function AppHandler({ children }: Props) {
     const { data: likes, isLoading, error } = useQuery({
         queryKey: ["user-likes"],
         queryFn: fetchUserLikes,
+        staleTime: Infinity,  // Keep data fresh indefinitely
+        refetchOnWindowFocus: false, // Disable refetching on window focus
+        refetchOnReconnect: false, // Disable refetching on reconnect
+        refetchOnMount: false, // Disable refetching on mount
+        refetchInterval: false, // Disable polling
     });
 
     if (error) {
