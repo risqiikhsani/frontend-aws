@@ -30,9 +30,12 @@ import { useQueryClient } from "@tanstack/react-query"
 import { Input } from "./ui/input"
 import { useAuth } from "@/context/auth"
 import { useState } from "react"
+import { Base64 } from "js-base64";
+import { Buffer } from 'buffer';
 
 const formSchema = z.object({
     name: z.string().min(10),
+    profileImage: z.instanceof(File).optional(),
 })
 
 export default function UpdateProfile({ data }: { data: any }) {
@@ -42,13 +45,27 @@ export default function UpdateProfile({ data }: { data: any }) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            name: data.name,
+            name: data.name
         },
     })
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const response = await api.put(`/my-profile`, { name: values.name })
+            console.log("before")
+            console.log(values)
+            let profileImageBase64: any = "";
+            // Convert the file to Base64 string
+            if (values.profileImage) {
+                const fileBuffer = await values.profileImage.arrayBuffer();
+                profileImageBase64 = Buffer.from(fileBuffer).toString('base64');
+            }
+            console.log("after")
+            console.log(values)
+
+            const response = await api.put(`/my-profile`, {
+                name: values.name,
+                profile_image: profileImageBase64
+            })
 
             if (response.status === 200) {
                 console.log("profile updated successfully")
@@ -78,7 +95,7 @@ export default function UpdateProfile({ data }: { data: any }) {
         <>
             <Button variant="outline" className="gap-2" onClick={onUpdate}>
                 <PencilIcon className="w-4 h-4" />
-                {isUpdate ? `cancel`:`Update profile`}
+                {isUpdate ? `cancel` : `Update profile`}
             </Button>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -102,6 +119,27 @@ export default function UpdateProfile({ data }: { data: any }) {
                                 <FormControl>
                                     <Input placeholder="Your name" {...field} disabled={isUpdate == false} />
                                 </FormControl>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="profileImage"
+                        render={({ field: { value, onChange, ...fieldProps } }) => (
+                            <FormItem>
+                                <FormLabel>File</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        {...fieldProps}
+                                        placeholder="Picture"
+                                        type="file"
+                                        accept="image/*, application/pdf"
+                                        onChange={(event) =>
+                                            onChange(event.target.files && event.target.files[0])
+                                        }
+                                    />
+                                </FormControl>
+                                <FormMessage />
                             </FormItem>
                         )}
                     />

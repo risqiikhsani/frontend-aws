@@ -9,7 +9,7 @@ export default function Profile() {
         <>
             <div className="flex-col">
                 <Avatar className="mx-auto h-20 w-20 my-20">
-                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarImage src={user.profile_image_url ? user.profile_image_url : "https://github.com/shadcn.png"} />
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 {/* <div className="flex gap-2 items-start">
