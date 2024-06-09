@@ -43,7 +43,7 @@ export default function UpdateComment({data}:{data: any}) {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const response = await fetch(
-                `https://c27skmgaxj.execute-api.ap-southeast-2.amazonaws.com/dev/comments/${data.id}`,
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/comments/${data.id}`,
                 {
                     method: "PUT",
                     headers: {

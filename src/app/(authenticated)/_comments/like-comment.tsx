@@ -24,7 +24,7 @@ export default function LikePost({ data }: { data: any }) {
         try {
             setIsLoading(true); // Set loading state to true
             const response = await fetch(
-                `https://c27skmgaxj.execute-api.ap-southeast-2.amazonaws.com/dev/likes/count?associated_id=${data.id}`,
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/likes/count?associated_id=${data.id}`,
                 {
                     method: "GET",
                     headers: {
@@ -50,7 +50,7 @@ export default function LikePost({ data }: { data: any }) {
     const onLike = async () => {
         try {
             const response = await fetch(
-                `https://c27skmgaxj.execute-api.ap-southeast-2.amazonaws.com/dev/likes/add?comment_id=${data.id}`,
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/likes/add?comment_id=${data.id}`,
                 {
                     method: "GET",
                     headers: {
@@ -79,7 +79,7 @@ export default function LikePost({ data }: { data: any }) {
     const onDislike = async () => {
         try {
             const response = await fetch(
-                `https://c27skmgaxj.execute-api.ap-southeast-2.amazonaws.com/dev/likes/remove?comment_id=${data.id}`,
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/likes/remove?comment_id=${data.id}`,
                 {
                     method: "GET",
                     headers: {

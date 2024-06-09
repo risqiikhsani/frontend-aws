@@ -19,14 +19,14 @@ import { toast } from "sonner";
 
 
 export interface IAuthContext {
-  handleLoginSuccess: (data: any) => void;
+  // handleLoginSuccess: (data: any) => void;
   logoutUser: () => void;
   user: UserType;
   fetchData: () => void;
 }
 
 const authContextDefaultValues: IAuthContext = {
-  handleLoginSuccess: (data: any) => {},
+  // handleLoginSuccess: (data: any) => {},
   logoutUser: () => {},
   fetchData: () => {},
   user: {
@@ -54,8 +54,9 @@ export function AuthHandler({ children }: Props) {
   const fetchUserData = async (): Promise<boolean> => {
     try {
       // get user
-      const response = await api.get("me");
+      const response = await api.get("my-profile");
       const data: UserType = response.data;
+      console.log(data)
       setUser(data);
       return true;
     } catch (error) {
@@ -78,9 +79,8 @@ export function AuthHandler({ children }: Props) {
       const userDataSuccess = await fetchUserData();
   
       if (userDataSuccess) {
-        toast.success("Successfully fetched user data and account data");
+        toast.success("Successfully fetched user data");
         setLoading(false);
-        console.log("User data:", user);
         return router.push("/");
       } else {
         toast.error("Error fetching user data ");
@@ -99,34 +99,34 @@ export function AuthHandler({ children }: Props) {
   };
 
   
-  const handleLoginSuccess = async (callbackUrl: string) => {
-    try {
-      const parsedHash: any = parseHashParams(callbackUrl);
-      const { id_token, access_token, expires_in } = parsedHash;
+  // const handleLoginSuccess = async (callbackUrl: string) => {
+  //   try {
+  //     const parsedHash: any = parseHashParams(callbackUrl);
+  //     const { id_token, access_token, expires_in } = parsedHash;
   
-      if (access_token & id_token & expires_in) {
-        Cookies.set('accesstoken', access_token, { expires: expires_in });
-        // api.defaults.headers.Authorization = `Bearer ${access_token}`
-      }
+  //     if (access_token & id_token & expires_in) {
+  //       Cookies.set('accesstoken', access_token, { expires: expires_in });
+  //       // api.defaults.headers.Authorization = `Bearer ${access_token}`
+  //     }
   
-      await fetchData();
-    } catch (error) {
-      console.error('Error handling login success:', error);
-    }
-  };
+  //     await fetchData();
+  //   } catch (error) {
+  //     console.error('Error handling login success:', error);
+  //   }
+  // };
   
   // Helper function to parse the URL hash parameters
-  const parseHashParams = (url: string) => {
-    if (url) {
-        const parsedUrl = new URL(url);
-        const hash = parsedUrl.hash.slice(1); // Remove the leading '#'
-        return queryString.parse(hash);
-    }
-    return {};
-};
+//   const parseHashParams = (url: string) => {
+//     if (url) {
+//         const parsedUrl = new URL(url);
+//         const hash = parsedUrl.hash.slice(1); // Remove the leading '#'
+//         return queryString.parse(hash);
+//     }
+//     return {};
+// };
 
   const value = {
-    handleLoginSuccess,
+    // handleLoginSuccess,
     logoutUser,
     user,
     fetchData,

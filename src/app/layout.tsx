@@ -35,7 +35,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
       >
         <ReactQueryClientProvider>
 
-          {/* <AuthHandler> */}
+          <AuthHandler>
           <AppHandler>
           <Toaster richColors />
           <div className="flex-col ">
@@ -43,7 +43,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
             {children}
           </div>
           </AppHandler>
-          {/* </AuthHandler> */}
+          </AuthHandler>
 
         </ReactQueryClientProvider>
       </body>

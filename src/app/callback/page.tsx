@@ -33,7 +33,7 @@ export default function Page() {
     return (
         <>
             <div className="my-40 flex-col">
-                <p>test</p>
+                <p>callback</p>
             </div>
         </>
     );

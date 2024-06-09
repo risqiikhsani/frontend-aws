@@ -17,9 +17,10 @@ import Profile from "./profile"
 import { useAuth } from "@/context/auth"
 
 const LOGIN_URL: any = process.env.NEXT_PUBLIC_COGNITO_LOGIN_URL
+const LOGOUT_URL: any = process.env.NEXT_PUBLIC_COGNITO_LOGOUT_URL
 
 export default function AppBar() {
-    const { user } = useAuth()
+    const { user, logoutUser } = useAuth()
     return (
 
         <div className="flex items-center justify-between p-4 shadow-md fixed w-full top-0 start-0 z-40 bg-slate-100">
@@ -66,8 +67,8 @@ export default function AppBar() {
                             </SheetContent>
                         </Sheet>
 
-                        <Button asChild variant="outline">
-                            <Link href="/logout">Logout</Link>
+                        <Button asChild variant="outline" onClick={logoutUser}>
+                            <Link href={LOGOUT_URL}>Logout</Link>
                         </Button>
                     </>
                 ) : (

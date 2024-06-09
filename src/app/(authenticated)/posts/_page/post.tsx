@@ -51,7 +51,7 @@ export default function Post({ data }: { data: any }) {
                             <AvatarImage src="https://github.com/shadcn.png" />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
-                        <p>{data.user}</p>
+                        <p>{data.user_detail.name}</p>
                     </Button>
 
                     <div className="flex-1">
@@ -103,7 +103,7 @@ export default function Post({ data }: { data: any }) {
 
                 <Accordion type="single" collapsible className="px-4">
                     <AccordionItem value="item-1">
-                        <AccordionTrigger>2 comments</AccordionTrigger>
+                        <AccordionTrigger>write and read 10 comments</AccordionTrigger>
                         <AccordionContent>
                             <Suspense fallback={<p>loading comments...</p>}>
                                 <Comments post_id={data.id} />

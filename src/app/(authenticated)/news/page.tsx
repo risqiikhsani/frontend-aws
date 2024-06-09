@@ -34,7 +34,7 @@ export default async function Page({
 
     const country = searchParams?.country || 'us';
 
-    const dynamicData = await fetch(`https://c27skmgaxj.execute-api.ap-southeast-2.amazonaws.com/dev/news?country=${country}`, { cache: 'no-store' })
+    const dynamicData = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/news?country=${country}`, { cache: 'no-store' })
     const data = await dynamicData.json();
 
     return (
@@ -47,8 +47,8 @@ export default async function Page({
                             <CardHeader>
                                 <div className="flex justify-left items-center gap-4">
                                     <div className="flex-col">
-                                    <Badge variant="outline">Author</Badge>
-                                    <p>{item.author}</p>
+                                        <Badge variant="outline">Author</Badge>
+                                        <p>{item.author}</p>
                                     </div>
 
                                     <div className="flex-1">
@@ -59,10 +59,16 @@ export default async function Page({
                                     </Button> */}
                                 </div>
 
+                                <Separator />
+
                                 <p className="font-bold underline">{item.source.name}</p>
 
                                 <CardTitle>{item.title}</CardTitle>
-                                {item.urlToImage ? <Image src={item.urlToImage} width={1000} height={1000} alt="image" className="rounded-md w-full" /> : null}
+                                {item.urlToImage ?
+                                    <Suspense fallback={<p>Loading image...</p>}>
+                                        <Image src={item.urlToImage} width={1000} height={1000} alt="image" loading = 'lazy' className="rounded-md w-full" />
+                                    </Suspense>
+                                    : null}
                                 <CardDescription>{item.description}</CardDescription>
                             </CardHeader>
                             <CardContent className="flex">

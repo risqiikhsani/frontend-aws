@@ -45,7 +45,7 @@ export default function CreateComment({ post_id }: { post_id: string }) {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const response = await fetch(
-                `https://c27skmgaxj.execute-api.ap-southeast-2.amazonaws.com/dev/comments?post_id=${post_id}`,
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/comments?post_id=${post_id}`,
                 {
                     method: "POST",
                     headers: {

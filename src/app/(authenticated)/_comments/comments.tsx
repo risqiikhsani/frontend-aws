@@ -7,7 +7,7 @@ import Comment from "./comment";
 import CreateComment from "./create-comment";
 
 const fetchComments = async (post_id: string) => {
-  const res = await fetch(`https://c27skmgaxj.execute-api.ap-southeast-2.amazonaws.com/dev/comments?post_id=${post_id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/comments?post_id=${post_id}`);
   return res.json();
 };
 
