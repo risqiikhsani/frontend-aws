@@ -31,6 +31,7 @@ import {
     DrawerTrigger,
 } from "@/components/ui/drawer"
 import LikeComment from "./like-comment"
+import MoreButtonComment from "./more-button-comment"
 
 
 export default function Comment({ data }: { data: any }) {
@@ -38,7 +39,7 @@ export default function Comment({ data }: { data: any }) {
         <>
             <Card className="my-4 border-double border-4 border-sky-500 bg-slate-50">
                 <div className="flex justify-left items-center gap-4">
-                    <Button variant="ghost" className="flex gap-2 justify-center items-center p-6">
+                    <Button variant="ghost" className="flex gap-2 justify-center items-center py-6">
                         <Avatar>
                             <AvatarImage src="https://github.com/shadcn.png" />
                             <AvatarFallback>CN</AvatarFallback>
@@ -48,12 +49,10 @@ export default function Comment({ data }: { data: any }) {
 
                     <div className="flex-1">
                     </div>
-                    <CardDescription>{ConvertTime(data.time_creation)}</CardDescription>
+                    <CardDescription className="mr-2">{ConvertTime(data.time_creation)}</CardDescription>
                     <Drawer>
                         <DrawerTrigger asChild>
-                            <Button variant="ghost" size="icon">
-                                <EllipsisVerticalIcon className="h-6 w-6" />
-                            </Button>
+                            <MoreButtonComment data={data}/>
                         </DrawerTrigger>
                         <DrawerContent>
                             <DrawerHeader>
