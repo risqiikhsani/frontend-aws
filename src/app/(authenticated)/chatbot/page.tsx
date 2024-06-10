@@ -82,8 +82,11 @@ export default function Chatbot() {
 
     return (
         <>
-            <div className="p-4 bg-gray-100 rounded-lg shadow-md">
-                <div className="px-6 py-4">
+            <div className="p-4 bg-gray-100 rounded-lg shadow-md ">
+                <div className="p-4 sticky w-full h-20 bg-cyan-100 rounded-lg border-double border-4 border-sky-500 flex gap-2 items-center justify-center text-center">
+                    <p>Health4Us Chat Virtual Assistance</p>
+                </div>
+                <div className="md:px-6 py-4 min-h-96">
                     {chatHistory.map((message: MessageChatBotBasicType, index: number) => (
                         <div key={index} className={`mb-4 p-4 max-w-md rounded-lg ${message.role === "user" ? "bg-blue-500 text-white self-end ml-auto" : "bg-white text-gray-800 whitespace-pre-wrap break-words"}`}>
                             <p>{message.content}</p>
