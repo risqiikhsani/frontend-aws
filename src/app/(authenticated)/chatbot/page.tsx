@@ -85,7 +85,7 @@ export default function Chatbot() {
             <div className="p-4 bg-gray-100 rounded-lg shadow-md">
                 <div className="px-6 py-4">
                     {chatHistory.map((message: MessageChatBotBasicType, index: number) => (
-                        <div key={index} className={`mb-4 p-4 max-w-md rounded-lg ${message.role === "user" ? "bg-blue-500 text-white self-end ml-auto" : "bg-white text-gray-800"}`}>
+                        <div key={index} className={`mb-4 p-4 max-w-md rounded-lg ${message.role === "user" ? "bg-blue-500 text-white self-end ml-auto" : "bg-white text-gray-800 whitespace-pre-wrap break-words"}`}>
                             <p>{message.content}</p>
                         </div>
                     ))}
