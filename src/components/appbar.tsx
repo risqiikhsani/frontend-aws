@@ -15,6 +15,7 @@ import {
 import LeftAppBarMobile from "./left-app-bar-mobile"
 import Profile from "./profile"
 import { useAuth } from "@/context/auth"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 const LOGIN_URL: any = process.env.NEXT_PUBLIC_COGNITO_LOGIN_URL
 const LOGOUT_URL: any = process.env.NEXT_PUBLIC_COGNITO_LOGOUT_URL
@@ -42,7 +43,10 @@ export default function AppBar() {
                     </Sheet>
                     <Button asChild variant="outline" size="icon">
                         <Link href="/">
-                            <HomeIcon className="h-6 w-6 text-blue-500" />
+                            <Avatar className="mx-auto h-8 w-10 my-20">
+                                <AvatarImage src="/pictures/logo.png" />
+                                <AvatarFallback>CN</AvatarFallback>
+                            </Avatar>
                         </Link>
                     </Button>
                 </div>
@@ -51,7 +55,7 @@ export default function AppBar() {
 
 
 
-            <div className="flex gap-4">
+            <div className="flex gap-2">
 
 
                 {user.id ? (
