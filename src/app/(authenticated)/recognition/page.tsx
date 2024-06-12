@@ -147,6 +147,7 @@ export default function Page() {
                                         <FormLabel>File</FormLabel>
                                         <FormControl>
                                             <Input
+                                                className="cursor-pointer"
                                                 {...fieldProps}
                                                 placeholder="Picture"
                                                 type="file"
@@ -166,10 +167,9 @@ export default function Page() {
                 </CardContent>
                 <CardContent className="flex flex-col gap-4">
                     {loadingUploadImage && <p>loading image.....</p>}
-                    {uploadedImage?.image_url && <Image src={uploadedImage.image_url} alt="image" height={800} width={800} />}
+                    {uploadedImage?.image_url && <Image src={uploadedImage.image_url} alt="image" height={800} width={800} loading="lazy" layout="responsive" objectFit="cover" objectPosition="center" />}
                     <Button onClick={() => refetchGetCustomLabel(uploadedImage.image_key)} className="bg-indigo-500">
-                        Detect Image
-                        <ArrowPathIcon className={loadingCustomLabel ? "animate-spin h-5 w-5 ml-3" : "h-5 w-5 ml-3"} />
+                        Detect Image {loadingCustomLabel && <ArrowPathIcon className="animate-spin h-5 w-5 ml-3" />}
                     </Button>
                     <pre>{JSON.stringify(result)}</pre>
                 </CardContent>
