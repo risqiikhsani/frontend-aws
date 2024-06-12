@@ -85,7 +85,7 @@ export default function Page() {
             console.log("after")
             console.log(values)
 
-            const response = await api.post(`/image-rekognition/upload`, {
+            const response = await api.post(`/image-rekognition/images`, {
                 image: imageBase64
             })
 
