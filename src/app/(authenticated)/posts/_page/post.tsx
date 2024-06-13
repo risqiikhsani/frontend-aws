@@ -36,6 +36,7 @@ import {
 import { useApp } from "@/context/app"
 import LikePost from "./like-post"
 import MoreButtonPost from "./more-button-post"
+import Image from "next/image"
 
 
 
@@ -58,7 +59,7 @@ export default function Post({ data }: { data: any }) {
                     <div className="flex-1">
                     </div>
                     <CardDescription className="mr-2">{ConvertTime(data.time_creation)}</CardDescription>
-                    <MoreButtonPost data={data}/>
+                    <MoreButtonPost data={data} />
 
                     {/* <UpdatePost data={data} />
                     <DeletePost data={data} /> */}
@@ -70,6 +71,7 @@ export default function Post({ data }: { data: any }) {
                     <CardDescription>Card Description</CardDescription>
                 </CardHeader> */}
                 <CardContent className="py-2">
+                    {data.image && <Image src={data.image} alt="image" width={600} height={600} priority className="rounded-md mx-auto my-2"/>}
                     <p>{data.text}</p>
                 </CardContent>
 

@@ -26,9 +26,12 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { useQueryClient } from "@tanstack/react-query"
 import api from "@/lib/axios"
+import { Buffer } from 'buffer';
+import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
     text: z.string().min(10),
+    image: z.instanceof(File).optional(),
 })
 
 export default function CreatePost() {
@@ -42,7 +45,16 @@ export default function CreatePost() {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const response = await api.post("/posts", { text: values.text })
+            let imageBase64 = "";
+            if (values.image) {
+                const fileBuffer = await values.image.arrayBuffer();
+                imageBase64 = Buffer.from(fileBuffer).toString('base64');
+            }
+
+            const response = await api.post("/posts", {
+                text: values.text,
+                image: imageBase64
+            })
 
             if (response.status === 200) {
                 console.log("Post created successfully")
@@ -90,8 +102,30 @@ export default function CreatePost() {
                                             </FormItem>
                                         )}
                                     />
+                                    <FormField
+                                        control={form.control}
+                                        name="image"
+                                        render={({ field: { value, onChange, ...fieldProps } }) => (
+                                            <FormItem>
+                                                <FormLabel>File</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        className="cursor-pointer"
+                                                        {...fieldProps}
+                                                        placeholder="Picture"
+                                                        type="file"
+                                                        accept="image/*, application/pdf"
+                                                        onChange={(event) =>
+                                                            onChange(event.target.files && event.target.files[0])
+                                                        }
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
                                     <DialogTrigger asChild>
-                                        <Button type="submit">Submit</Button>
+                                        <Button type="submit">Create</Button>
                                     </DialogTrigger>
 
                                 </form>

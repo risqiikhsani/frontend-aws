@@ -172,6 +172,9 @@ export default function Page() {
                         Detect Image {loadingCustomLabel && <ArrowPathIcon className="animate-spin h-5 w-5 ml-3" />}
                     </Button>
                     <pre>{JSON.stringify(result)}</pre>
+                    <Button className="bg-indigo-500">
+                        Detect Image (by request)
+                    </Button>
                 </CardContent>
             </Card>
         </>
