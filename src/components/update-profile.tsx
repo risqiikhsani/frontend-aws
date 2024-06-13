@@ -93,23 +93,12 @@ export default function UpdateProfile({ data }: { data: any }) {
 
     return (
         <>
-            <Button variant="outline" className="gap-2" onClick={onUpdate}>
-                <PencilIcon className="w-4 h-4" />
+            <Button className="mb-4" onClick={onUpdate}>
+                <PencilIcon className="w-4 h-4 mr-2" />
                 {isUpdate ? `cancel` : `Update profile`}
             </Button>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                    <FormField
-                        name="id"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>ID</FormLabel>
-                                <FormControl>
-                                    <p>{data.id}</p>
-                                </FormControl>
-                            </FormItem>
-                        )}
-                    />
                     <FormField
                         control={form.control}
                         name="name"
@@ -130,6 +119,7 @@ export default function UpdateProfile({ data }: { data: any }) {
                                 <FormLabel>File</FormLabel>
                                 <FormControl>
                                     <Input
+                                        disabled={isUpdate == false}
                                         {...fieldProps}
                                         placeholder="Picture"
                                         type="file"

@@ -16,6 +16,7 @@ import LeftAppBarMobile from "./left-app-bar-mobile"
 import Profile from "./profile"
 import { useAuth } from "@/context/auth"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import Notifications from "./notifications"
 
 const LOGIN_URL: any = process.env.NEXT_PUBLIC_COGNITO_LOGIN_URL
 const LOGOUT_URL: any = process.env.NEXT_PUBLIC_COGNITO_LOGOUT_URL
@@ -60,13 +61,21 @@ export default function AppBar() {
 
                 {user.id ? (
                     <>
-                        <Button variant="outline" size="icon">
-                            <BellAlertIcon className="h-6 w-6 text-blue-500" />
-                            <span className="relative flex h-3 w-3">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-                            </span>
-                        </Button>
+
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <Button variant="outline" size="icon">
+                                    <BellAlertIcon className="h-6 w-6 text-blue-500" />
+                                    <span className="relative flex h-3 w-3">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                                    </span>
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent>
+                                <Notifications />
+                            </SheetContent>
+                        </Sheet>
 
                         <Sheet>
                             <SheetTrigger asChild>

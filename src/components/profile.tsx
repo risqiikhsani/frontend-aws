@@ -8,7 +8,7 @@ export default function Profile() {
     return (
         <>
             <div className="flex-col">
-                <Avatar className="mx-auto h-20 w-20 my-20">
+                <Avatar className="mx-auto h-40 w-40 my-20">
                     <AvatarImage src={user.profile_image_url ? user.profile_image_url : "https://github.com/shadcn.png"} />
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
