@@ -34,7 +34,8 @@ export default function Notifications() {
 
     return (
         <>
-            <p>Notifications</p>
+        <div className="overflow-y-auto">
+        <p>Notifications</p>
             {data && data.map((a: any) => (
                 <Card key={a.id} className="my-2 border-double border-4 border-sky-500">
                     <CardHeader className="text-right">
@@ -54,6 +55,8 @@ export default function Notifications() {
 
                 </Card>
             ))}
+        </div>
+           
         </>
     );
 }
