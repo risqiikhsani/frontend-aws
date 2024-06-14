@@ -30,7 +30,6 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/auth";
 import { useEffect, useState } from "react";
-import { Base64 } from "js-base64";
 import { Buffer } from 'buffer';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
