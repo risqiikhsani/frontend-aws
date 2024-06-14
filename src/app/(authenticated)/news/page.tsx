@@ -43,7 +43,7 @@ export default async function Page({
             <Suspense key={country} fallback={<p>Loading...</p>}>
                 {data ? (
                     data.articles.map((item: any, index: any) => (
-                        <Card key={index} className="my-4 border-double border-4 border-sky-200">
+                        <Card key={index} className="my-4 ">
                             <CardHeader>
                                 <div className="flex justify-left items-center gap-4">
                                     <div className="flex-col">

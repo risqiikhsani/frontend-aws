@@ -46,7 +46,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
           <AuthHandler>
           <AppHandler>
           <Toaster richColors />
-          <div className="flex-col ">
+          <div className="flex-col dark:bg-gradient-to-r dark:from-slate-800 dark:to-slate-900">
             <AppBar />
             {children}
           </div>

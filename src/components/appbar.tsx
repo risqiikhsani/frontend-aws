@@ -27,7 +27,7 @@ export default function AppBar() {
     const { user, logoutUser } = useAuth()
     return (
 
-        <div className="flex items-center justify-between p-4 shadow-md fixed w-full top-0 start-0 z-40 bg-slate-100 dark:bg-slate-800">
+        <div className="flex items-center justify-between p-4 fixed w-full top-0 start-0 z-40 bg-slate-100 dark:bg-slate-800 shadow-xl">
 
 
 
