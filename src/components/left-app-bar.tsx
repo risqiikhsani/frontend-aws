@@ -7,7 +7,7 @@ import CustomLink from "./custom-link";
 export default function LeftAppBar() {
     return (
         <>
-            <div className="fixed left-0 w-64 flex-col hidden md:flex h-screen px-4 pt-24 overflow-auto border-r border-gray-200 shadow-md">
+            <div className="fixed left-0 w-64 flex-col hidden md:flex h-screen px-4 pt-24 overflow-auto border-r shadow-md">
                 <nav className="flex flex-col space-y-2 mt-4">
 
                     <CustomLink href="/news">

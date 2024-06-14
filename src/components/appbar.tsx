@@ -17,6 +17,8 @@ import Profile from "./profile"
 import { useAuth } from "@/context/auth"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import Notifications from "./notifications"
+import { ModeToggle } from "./mode-toggle"
+
 
 const LOGIN_URL: any = process.env.NEXT_PUBLIC_COGNITO_LOGIN_URL
 const LOGOUT_URL: any = process.env.NEXT_PUBLIC_COGNITO_LOGOUT_URL
@@ -25,7 +27,7 @@ export default function AppBar() {
     const { user, logoutUser } = useAuth()
     return (
 
-        <div className="flex items-center justify-between p-4 shadow-md fixed w-full top-0 start-0 z-40 bg-slate-100">
+        <div className="flex items-center justify-between p-4 shadow-md fixed w-full top-0 start-0 z-40 bg-slate-100 dark:bg-slate-800">
 
 
 
@@ -61,7 +63,8 @@ export default function AppBar() {
 
                 {user.id ? (
                     <>
-
+                  
+                        <ModeToggle/>
                         <Sheet>
                             <SheetTrigger asChild>
                                 <Button variant="outline" size="icon">

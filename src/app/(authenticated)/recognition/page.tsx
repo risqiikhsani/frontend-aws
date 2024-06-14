@@ -168,11 +168,11 @@ export default function Page() {
                 <CardContent className="flex flex-col gap-4">
                     {loadingUploadImage && <p>loading image.....</p>}
                     {uploadedImage?.image_url && <Image src={uploadedImage.image_url} alt="image" height={800} width={800} loading="lazy" layout="responsive" objectFit="cover" objectPosition="center" />}
-                    <Button onClick={() => refetchGetCustomLabel(uploadedImage.image_key)} className="bg-indigo-500">
+                    <Button onClick={() => refetchGetCustomLabel(uploadedImage.image_key)} >
                         Detect Image {loadingCustomLabel && <ArrowPathIcon className="animate-spin h-5 w-5 ml-3" />}
                     </Button>
                     <pre>{JSON.stringify(result)}</pre>
-                    <Button className="bg-indigo-500">
+                    <Button >
                         Detect Image (by request)
                     </Button>
                 </CardContent>
@@ -371,7 +371,7 @@ export default function Page() {
 //                 <CardContent className="flex flex-col gap-4">
 //                     {loadingUploadImage && <p>loading image.....</p>}
 //                     {uploadedImage.image_url && <Image src={uploadedImage.image_url} alt="image" height={800} width={800} />}
-//                     <Button onClick={GetCustomLabel} className="bg-indigo-500">Detect Image
+//                     <Button onClick={GetCustomLabel} >Detect Image
 
 //                     </Button>
 //                     <pre>{JSON.stringify(result)}</pre>

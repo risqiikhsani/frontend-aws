@@ -37,7 +37,7 @@ import MoreButtonComment from "./more-button-comment"
 export default function Comment({ data }: { data: any }) {
     return (
         <>
-            <Card className="my-4 border-double border-4 border-sky-500 bg-slate-50">
+            <Card className="my-4 shadow-lg">
                 <div className="flex justify-left items-center gap-4">
                     <Button variant="ghost" className="flex gap-2 justify-center items-center py-6">
                         <Avatar>

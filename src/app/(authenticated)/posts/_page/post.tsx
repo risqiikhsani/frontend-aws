@@ -46,7 +46,7 @@ export default function Post({ data }: { data: any }) {
 
     return (
         <>
-            <Card className="my-4 border-double border-4 border-sky-200">
+            <Card className="my-4 shadow-2xl">
                 <div className="flex justify-left items-center gap-4">
                     <Button variant="ghost" className="flex gap-2 justify-center items-center py-6 rounded-xl">
                         <Avatar>

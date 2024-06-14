@@ -10,7 +10,8 @@ import { Toaster } from 'sonner'
 import { AuthHandler } from "@/context/auth";
 import ReactQueryClientProvider from "@/context/react-query-client-provider";
 import { AppHandler } from "@/context/app";
-
+import {ThemeProvider as NextThemesProvider} from "next-themes";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -33,6 +34,13 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
           fontSans.variable
         )}
       >
+                  <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+
         <ReactQueryClientProvider>
 
           <AuthHandler>
@@ -46,6 +54,8 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
           </AuthHandler>
 
         </ReactQueryClientProvider>
+                  
+        </ThemeProvider>
       </body>
     </html>
   );
