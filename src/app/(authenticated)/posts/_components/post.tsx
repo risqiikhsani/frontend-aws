@@ -83,6 +83,8 @@ export default function Post({ data }: { data: any }) {
 
                 </div>
 
+                <Separator/>
+
                 <Accordion type="single" collapsible className="px-4">
                     <AccordionItem value="item-1">
                         <AccordionTrigger>{data.number_comments != 0 ? `read ${data.number_comments} comments` : `comments`}</AccordionTrigger>
