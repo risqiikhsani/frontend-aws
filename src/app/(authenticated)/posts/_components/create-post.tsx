@@ -31,7 +31,8 @@ import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
     text: z.string().min(10),
-    image: z.instanceof(File).optional(),
+    // image: z.instanceof(File).optional(),
+    image: z.any().optional(),
 })
 
 export default function CreatePost() {

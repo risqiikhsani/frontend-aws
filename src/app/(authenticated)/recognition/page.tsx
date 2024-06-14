@@ -27,7 +27,8 @@ import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 
 const formSchema = z.object({
-    image: z.instanceof(File).optional(),
+    // image: z.instanceof(File).optional(),
+    image: z.any().optional(),
 });
 
 const fetchStatus = async () => {
