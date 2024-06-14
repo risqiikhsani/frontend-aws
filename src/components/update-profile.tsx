@@ -35,7 +35,8 @@ import { Buffer } from 'buffer';
 
 const formSchema = z.object({
     name: z.string().min(10),
-    profileImage: z.instanceof(File).optional(),
+    // profileImage: z.instanceof(File).optional(),
+    profileImage: z.any().optional()
 })
 
 export default function UpdateProfile({ data }: { data: any }) {
