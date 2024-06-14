@@ -59,12 +59,12 @@ export default function AppBar() {
 
 
             <div className="flex gap-2">
-
+            <ModeToggle/>
 
                 {user.id ? (
                     <>
                   
-                        <ModeToggle/>
+                        
                         <Sheet>
                             <SheetTrigger asChild>
                                 <Button variant="outline" size="icon">
