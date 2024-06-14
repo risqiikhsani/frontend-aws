@@ -96,9 +96,12 @@ export default function AppBar() {
                         </Button>
                     </>
                 ) : (
+                    <>
                     <Button asChild variant="outline">
                         <Link href={LOGIN_URL}>Login</Link>
                     </Button>
+                    </>
+                    
                 )}
 
             </div>
