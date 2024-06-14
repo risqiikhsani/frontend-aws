@@ -10,7 +10,7 @@ import { Toaster } from 'sonner'
 import { AuthHandler } from "@/context/auth";
 import ReactQueryClientProvider from "@/context/react-query-client-provider";
 import { AppHandler } from "@/context/app";
-import {ThemeProvider as NextThemesProvider} from "next-themes";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const fontSans = FontSans({
@@ -34,27 +34,27 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
           fontSans.variable
         )}
       >
-                  <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
 
-        <ReactQueryClientProvider>
+          <ReactQueryClientProvider>
 
-          <AuthHandler>
-          <AppHandler>
-          <Toaster richColors />
-          <div className="flex-col bg-gradient-to-r from-cyan-50 to-cyan-200 dark:bg-gradient-to-r dark:from-slate-800 dark:to-slate-900">
-            <AppBar />
-            {children}
-          </div>
-          </AppHandler>
-          </AuthHandler>
+            <AuthHandler>
+              <AppHandler>
+                <Toaster richColors />
+                <div className="flex-col bg-gradient-to-r from-cyan-50 to-cyan-200 dark:bg-gradient-to-r dark:from-slate-800 dark:to-slate-900">
+                  <AppBar />
+                  {children}
+                </div>
+              </AppHandler>
+            </AuthHandler>
 
-        </ReactQueryClientProvider>
-                  
+          </ReactQueryClientProvider>
+
         </ThemeProvider>
       </body>
     </html>
