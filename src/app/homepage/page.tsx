@@ -9,7 +9,8 @@ export default function Page() {
                     <div className="absolute inset-0 flex items-center justify-center">
                         <div className="bg-opacity-80 p-8 rounded-lg shadow-lg bg-cyan-300">
                             <Image src="/pictures/logo_text.png" width={300} height={300} alt="test" className='mx-auto'/>
-                            <p className="text-2xl md:text-8xl font-bold text-white">Health For Us</p>
+                            <p className="text-2xl md:text-8xl font-bold">Health For Us</p>
+                            <Image src="/pictures/logo.png" width={300} height={300} alt="test" className='mx-auto'/>
                         </div>
                     </div>
                 </div>
