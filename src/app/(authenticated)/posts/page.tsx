@@ -1,7 +1,8 @@
 "use client"
-import Post from "./_page/post"
-import CreatePost from "./_page/create-post";
+import Post from "./_components/post";
+import CreatePost from "./_components/create-post";
 import { useQuery } from "@tanstack/react-query";
+
 
 const fetchPosts = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/posts`);
