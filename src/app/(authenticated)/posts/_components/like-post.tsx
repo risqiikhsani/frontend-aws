@@ -102,7 +102,7 @@ export default function LikePost({ data }: { data: any }) {
                     )
                 }
             </Button>
-            <p>{numberLikes} likes</p>
+            <p className="text-xs">{numberLikes} likes</p>
         </div>
     );
 }

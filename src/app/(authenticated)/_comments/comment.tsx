@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/drawer"
 import LikeComment from "./like-comment"
 import MoreButtonComment from "./more-button-comment"
+import TranslateText from "../_translate/translate-text"
 
 
 export default function Comment({ data }: { data: any }) {
@@ -62,6 +63,7 @@ export default function Comment({ data }: { data: any }) {
                 </CardHeader> */}
                 <CardContent className="py-2">
                     <p>{data.text}</p>
+                    <TranslateText text={data.text}/>
                 </CardContent>
 
                 <div className="flex justify-left p-2">

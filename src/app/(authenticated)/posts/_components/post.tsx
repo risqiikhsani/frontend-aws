@@ -80,7 +80,7 @@ export default function Post({ data }: { data: any }) {
                     <TranslateText text={data.text}/>
                 </CardContent>
 
-                <div className="flex justify-between p-2">
+                <div className="flex justify-between px-2">
                     <LikePost data={data} />
                     <Button variant="outline" size="icon" className="rounded-full">
                         <ShareIcon className="h-4 w-4" />
@@ -94,7 +94,7 @@ export default function Post({ data }: { data: any }) {
 
                 <Accordion type="single" collapsible className="px-4">
                     <AccordionItem value="item-1">
-                        <AccordionTrigger>{data.number_comments != 0 ? `read ${data.number_comments} comments` : `comments`}</AccordionTrigger>
+                        <AccordionTrigger className="text-xs">{data.number_comments != 0 ? `read ${data.number_comments} comments` : `comments`}</AccordionTrigger>
                         <AccordionContent>
                             <Suspense fallback={<p>loading comments...</p>}>
                                 <Comments post_id={data.id} />
