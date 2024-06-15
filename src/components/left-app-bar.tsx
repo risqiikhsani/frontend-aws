@@ -43,8 +43,8 @@ export default function LeftAppBar() {
 
                     <p>More</p>
 
-                    <CustomLink href="/logs">
-                        Logs
+                    <CustomLink href="/settings">
+                        Settings
                     </CustomLink>
 
 

@@ -17,11 +17,16 @@ import { toast } from "sonner";
 
 export interface IAppContext {
     likes: any;
+    languageToTranslate: string;
+    setLanguageToTranslate: (language: string) => void; // Corrected the function signature
 }
 
 const AppContextDefaultValues: IAppContext = {
     likes: [],
+    languageToTranslate: "en",
+    setLanguageToTranslate: () => {}, // Placeholder function
 };
+
 
 export const AppContext = createContext<IAppContext>(AppContextDefaultValues);
 
@@ -30,6 +35,7 @@ interface Props {
 }
 
 export function AppHandler({ children }: Props) {
+    const [languageToTranslate,setLanguageToTranslate] = useState("en")
 
     const fetchUserLikes = async (): Promise<any> => {
         try {
@@ -60,6 +66,8 @@ export function AppHandler({ children }: Props) {
 
     const value = {
         likes: likes || [],
+        languageToTranslate,
+        setLanguageToTranslate,
     };
 
 

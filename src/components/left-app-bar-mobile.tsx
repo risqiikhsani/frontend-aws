@@ -10,12 +10,12 @@ export default function LeftAppBarMobile(){
         <nav className="flex flex-col space-y-2 mt-4">
                 
                     <CustomLink href="/news">
-                        News <NewspaperIcon className="h-6 w-6 mx-2"/>
+                        Health News <NewspaperIcon className="h-6 w-6 mx-2"/>
                     </CustomLink>
                 
                 
                     <CustomLink href="/posts">
-                        Posts <GlobeAltIcon className="h-6 w-6 mx-2"/>
+                        Feeds <GlobeAltIcon className="h-6 w-6 mx-2"/>
                     </CustomLink>
                 
                 
@@ -29,8 +29,8 @@ export default function LeftAppBarMobile(){
                     </CustomLink>
                 
                 
-                    <CustomLink href="/logs">
-                        Logs
+                    <CustomLink href="/settings">
+                        Settings
                     </CustomLink>
                 
                 <Separator/>

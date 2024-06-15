@@ -37,6 +37,10 @@ import { useApp } from "@/context/app"
 import LikePost from "./like-post"
 import MoreButtonPost from "./more-button-post"
 import Image from "next/image"
+import TranslateText from "../../_translate/translate-text"
+
+
+
 
 
 
@@ -73,6 +77,7 @@ export default function Post({ data }: { data: any }) {
                 <CardContent className="py-2">
                     {data.image && <Image src={data.image} alt="image" width={600} height={600} priority className="rounded-md mx-auto my-2"/>}
                     <p>{data.text}</p>
+                    <TranslateText text={data.text}/>
                 </CardContent>
 
                 <div className="flex justify-between p-2">
@@ -82,6 +87,8 @@ export default function Post({ data }: { data: any }) {
                     </Button>
 
                 </div>
+
+
 
                 <Separator/>
 
