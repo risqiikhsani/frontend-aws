@@ -25,6 +25,8 @@ import { Buffer } from 'buffer';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import About from "./_components/about";
+import { Separator } from "@radix-ui/react-separator";
 
 const formSchema = z.object({
     // image: z.instanceof(File).optional(),
@@ -117,9 +119,13 @@ export default function Page() {
             <Card>
                 <CardHeader>
                     <CardTitle>Recognize Image</CardTitle>
-                    <p>skin disease detector [BETA]</p>
+                    <div className="flex justify-start items-center gap-2">
+                    <p>skin disease detector [BETA]</p> <About/>
+                    </div>
+                    
+                    machine status : 
                     <div className="flex gap-2 items-center justify-start">
-                        machine status : 
+                        
                         {status && <Badge>{status.Status}</Badge>}
                         
                         <Button size="icon" variant="outline" className="rounded-full" onClick={refetchStatus}>

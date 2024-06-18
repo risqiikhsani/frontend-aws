@@ -27,6 +27,7 @@ import { toast } from "sonner"
 import { useQueryClient } from "@tanstack/react-query"
 import api from "@/lib/axios"
 import { MessageChatBotBasicType } from "@/types/types"
+import About from "./_components/about"
 
 const formSchema = z.object({
     text: z.string(),
@@ -84,7 +85,7 @@ export default function Chatbot() {
         <>
             <div className="p-4">
                 <div className="p-4 sticky w-full h-20 rounded-lg border-double border-4 border-sky-500 flex gap-2 items-center justify-center text-center">
-                    <p>Health4Us Chat Bot with KB</p>
+                    <p>Health4Us Chat Bot with KB</p> <About/>
                 </div>
                 <div className="md:px-6 py-4 min-h-96">
                     {chatHistory.map((message: MessageChatBotBasicType, index: number) => (
