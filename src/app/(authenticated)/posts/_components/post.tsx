@@ -50,14 +50,14 @@ export default function Post({ data }: { data: any }) {
 
     return (
         <>
-            <Card className="my-4 shadow-xl ">
+            <Card className="my-4">
                 <div className="flex justify-left items-center gap-4">
                     <Button variant="ghost" className="flex gap-2 justify-center items-center py-6 rounded-xl">
                         <Avatar>
                             <AvatarImage src={data.user_detail.profile_image_url} />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
-                        <p>{data.user_detail.name}</p>
+                        <p className="font-bold">{data.user_detail.name}</p>
                     </Button>
 
                     <div className="flex-1">

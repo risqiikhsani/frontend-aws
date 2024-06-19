@@ -28,7 +28,7 @@ export default function AppBar() {
     const router = useRouter()
     return (
 
-        <div className="flex items-center justify-between p-4 fixed w-full top-0 start-0 z-40 bg-gradient-to-r from-cyan-200 to-cyan-500 dark:bg-gradient-to-r dark:from-slate-700 dark:to-slate-900 shadow-xl">
+        <div className="flex items-center justify-between p-4 fixed w-full top-0 start-0 z-40 bg-gradient-to-r from-slate-50 to-slate-100 dark:bg-gradient-to-r dark:from-slate-700 dark:to-slate-900 shadow-xl">
 
 
 

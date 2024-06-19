@@ -93,7 +93,7 @@ export default function LikePost({ data }: { data: any }) {
 
     return (
         <div className="flex justify-center items-center gap-2">
-            <Button variant="outline" size="icon" className="rounded-full" onClick={likedByUser ? onDislike : onLike}>
+            <Button variant="ghost" size="icon" className="rounded-full" onClick={likedByUser ? onDislike : onLike}>
                 {
                     likedByUser ? (
                         <HeartIcon className="h-6 w-6 fill-red-500" />

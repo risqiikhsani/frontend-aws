@@ -38,7 +38,35 @@ import TranslateText from "../_translate/translate-text"
 export default function Comment({ data }: { data: any }) {
     return (
         <>
-            <Card className="my-4 shadow-lg">
+            <Card className="flex border-none   ">
+                <Button variant="ghost" className="">
+                    <Avatar>
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                </Button>
+                <div className="w-full">
+                    <div className="flex items-start">
+                        <p className="font-bold">{data.user_detail.name}</p>
+                        <div className="flex-1">
+                        </div>
+                        <CardDescription className="mr-2">{ConvertTime(data.time_creation)}</CardDescription>
+
+                    </div>
+                    <div className="flex justify-between">
+                        <div>
+                            <p>{data.text}</p>
+                            <TranslateText text={data.text} />
+                        </div>
+
+                        <MoreButtonComment data={data} />
+                    </div>
+                    <div className="flex justify-left">
+                        <LikeComment data={data} />
+                    </div>
+                </div>
+            </Card>
+            {/* <Card className="my-4 shadow-lg">
                 <div className="flex justify-left items-center gap-4">
                     <Button variant="ghost" className="flex gap-2 justify-center items-center py-6">
                         <Avatar>
@@ -51,34 +79,23 @@ export default function Comment({ data }: { data: any }) {
                     <div className="flex-1">
                     </div>
                     <CardDescription className="mr-2">{ConvertTime(data.time_creation)}</CardDescription>
-                    <MoreButtonComment data={data}/>
+                    <MoreButtonComment data={data} />
 
                 </div>
-                <Separator/>
+                <Separator />
 
-                {/* 
-                <CardHeader>
-                    <CardTitle>Card Title</CardTitle>
-                    <CardDescription>Card Description</CardDescription>
-                </CardHeader> */}
+
                 <CardContent className="py-2">
                     <p>{data.text}</p>
-                    <TranslateText text={data.text}/>
+                    <TranslateText text={data.text} />
                 </CardContent>
 
                 <div className="flex justify-left p-2">
-                    <LikeComment data={data}/>
+                    <LikeComment data={data} />
                 </div>
 
-                {/* <Accordion type="single" collapsible className="px-4">
-                    <AccordionItem value="item-1">
-                        <AccordionTrigger>2 comments</AccordionTrigger>
-                        <AccordionContent>
-                            Yes. It adheres to the WAI-ARIA design pattern.
-                        </AccordionContent>
-                    </AccordionItem>
-                </Accordion> */}
-            </Card>
+
+            </Card> */}
 
         </>
     )
