@@ -83,13 +83,13 @@ export default function AppBar() {
                             </SheetContent>
                         </Sheet>
 
-                        <Button asChild variant="outline" onClick={logoutUser}>
+                        <Button asChild variant="ghost" onClick={logoutUser} className="text-red-400">
                             <Link href={LOGOUT_URL}>Logout</Link>
                         </Button>
                     </>
                 ) : (
                     <>
-                    <Button asChild variant="outline">
+                    <Button asChild variant="ghost">
                         <Link href={LOGIN_URL}>Login</Link>
                     </Button>
                     </>
