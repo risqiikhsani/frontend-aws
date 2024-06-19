@@ -1,0 +1,33 @@
+export const post_type = [
+    { "name": "Question", "value": "question" },
+    { "name": "News", "value": "news" },
+    { "name": "Post", "value": "post" },
+    { "name": "Other", "value": "other" },
+]
+
+export const post_category = [
+    { "name": "General Health", "value": "general_health" },
+    { "name": "Nutrition & Diet", "value": "nutrition_diet" },
+    { "name": "Fitness & Exercise", "value": "fitness_exercise" },
+    { "name": "Mental Health", "value": "mental_health" },
+    { "name": "Women's Health", "value": "womens_health" },
+    { "name": "Men's Health", "value": "mens_health" },
+    { "name": "Children's Health", "value": "childrens_health" },
+    { "name": "Elderly Care", "value": "elderly_care" },
+    { "name": "Chronic Conditions", "value": "chronic_conditions" },
+    { "name": "Medications", "value": "medications" },
+    { "name": "Healthcare News", "value": "healthcare_news" },
+    { "name": "Health Insurance", "value": "health_insurance" },
+    { "name": "Alternative Medicine", "value": "alternative_medicine" },
+    { "name": "Medical Research", "value": "medical_research" },
+    { "name": "Healthy Living", "value": "healthy_living" },
+    { "name": "Diseases & Disorders", "value": "diseases_disorders" },
+    { "name": "Symptom Checker", "value": "symptom_checker" },
+    { "name": "First Aid & Emergencies", "value": "first_aid_emergencies" },
+    { "name": "Preventive Care", "value": "preventive_care" },
+    { "name": "Patient Support Groups", "value": "patient_support_groups" },
+    { "name": "Healthcare Providers", "value": "healthcare_providers" },
+    { "name": "Wellness Programs", "value": "wellness_programs" },
+    { "name": "Public Health", "value": "public_health" },
+    { "name": "other", "value": "other" },
+]

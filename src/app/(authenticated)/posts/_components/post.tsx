@@ -38,6 +38,8 @@ import LikePost from "./like-post"
 import MoreButtonPost from "./more-button-post"
 import Image from "next/image"
 import TranslateText from "../../_translate/translate-text"
+import { Badge } from "@/components/ui/badge"
+import { getCategoryName, getTypeName } from "@/data/convert-data"
 
 
 
@@ -74,6 +76,10 @@ export default function Post({ data }: { data: any }) {
                     <CardTitle>Card Title</CardTitle>
                     <CardDescription>Card Description</CardDescription>
                 </CardHeader> */}
+                <div className="flex gap-2 p-2">
+                {data.type && <Badge variant="outline" className="bg-cyan-300">{getTypeName(data.type)}</Badge>}
+                {data.category && <Badge variant="outline" className="bg-cyan-300">{getCategoryName(data.category)}</Badge>}
+                </div>
                 <CardContent className="py-2">
                     {data.image && <Image src={data.image} alt="image" width={600} height={600} priority className="rounded-md mx-auto my-2"/>}
                     <p>{data.text}</p>
