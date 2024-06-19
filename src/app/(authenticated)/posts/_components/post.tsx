@@ -37,6 +37,10 @@ import { useApp } from "@/context/app"
 import LikePost from "./like-post"
 import MoreButtonPost from "./more-button-post"
 import Image from "next/image"
+import TranslateText from "../../_translate/translate-text"
+
+
+
 
 
 
@@ -46,14 +50,14 @@ export default function Post({ data }: { data: any }) {
 
     return (
         <>
-            <Card className="my-4 shadow-xl ">
+            <Card className="my-4">
                 <div className="flex justify-left items-center gap-4">
                     <Button variant="ghost" className="flex gap-2 justify-center items-center py-6 rounded-xl">
                         <Avatar>
                             <AvatarImage src={data.user_detail.profile_image_url} />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
-                        <p>{data.user_detail.name}</p>
+                        <p className="font-bold">{data.user_detail.name}</p>
                     </Button>
 
                     <div className="flex-1">
@@ -73,6 +77,7 @@ export default function Post({ data }: { data: any }) {
                 <CardContent className="py-2">
                     {data.image && <Image src={data.image} alt="image" width={600} height={600} priority className="rounded-md mx-auto my-2"/>}
                     <p>{data.text}</p>
+                    <TranslateText text={data.text}/>
                 </CardContent>
 
                 <div className="flex justify-between p-2">
@@ -83,9 +88,13 @@ export default function Post({ data }: { data: any }) {
 
                 </div>
 
+
+
+                <Separator/>
+
                 <Accordion type="single" collapsible className="px-4">
                     <AccordionItem value="item-1">
-                        <AccordionTrigger>{data.number_comments != 0 ? `read ${data.number_comments} comments` : `comments`}</AccordionTrigger>
+                        <AccordionTrigger className="text-xs">{data.number_comments != 0 ? `read ${data.number_comments} comments` : `comments`}</AccordionTrigger>
                         <AccordionContent>
                             <Suspense fallback={<p>loading comments...</p>}>
                                 <Comments post_id={data.id} />

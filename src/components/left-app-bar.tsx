@@ -7,12 +7,12 @@ import CustomLink from "./custom-link";
 export default function LeftAppBar() {
     return (
         <>
-            <div className="fixed left-0 w-64 flex-col hidden md:flex h-screen px-4 pt-24 overflow-auto shadow-xl ">
+            <div className="fixed left-0 w-64 flex-col hidden md:flex h-screen px-4 pt-24 overflow-auto shadow-xl">
                 <nav className="flex flex-col space-y-2 mt-4">
 
                     <Separator />
 
-                    <p>Features</p>
+                    <p className="text-xs">Features</p>
 
                     <CustomLink href="/news">
                         Health News <NewspaperIcon className="h-6 w-6 mx-2" />
@@ -25,7 +25,7 @@ export default function LeftAppBar() {
 
                     <Separator />
 
-                    <p>Add-on Features</p>
+                    <p className="text-xs">Add-on Features</p>
 
                     <CustomLink href="/chatbot">
                         Virtual Assistance <ChatBubbleBottomCenterIcon className="h-6 w-6 mx-2" />
@@ -41,10 +41,10 @@ export default function LeftAppBar() {
 
                     <Separator />
 
-                    <p>More</p>
+                    <p className="text-xs">More</p>
 
-                    <CustomLink href="/logs">
-                        Logs
+                    <CustomLink href="/settings">
+                        Settings
                     </CustomLink>
 
 
