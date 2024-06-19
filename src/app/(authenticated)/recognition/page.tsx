@@ -27,6 +27,7 @@ import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import About from "./_components/about";
 import { Separator } from "@radix-ui/react-separator";
+import ListImages from "./_components/list-images";
 
 const formSchema = z.object({
     // image: z.instanceof(File).optional(),
@@ -43,30 +44,50 @@ const fetchCustomLabel = async (imageKey: string) => {
     return response.data;
 };
 
+const fetchCustomLabelLater = async (imageKey: string) => {
+    const response = await api.get(`/image-rekognition/analyze-later?image_key=${imageKey}`);
+    return response.data;
+};
+
 export default function Page() {
     const queryClient = useQueryClient();
     const [uploadedImage, setUploadedImage] = useState({} as any);
     const [loadingUploadImage, setLoadingUploadImage] = useState(false);
 
-    const { data: status, isLoading: loadingFetchStatus,isError: errorFetchStatus, isFetching: fetchingStatus } = useQuery({
-        queryKey:['status'], 
-        queryFn:fetchStatus
+    const { data: status, isLoading: loadingFetchStatus, isError: errorFetchStatus, isFetching: fetchingStatus } = useQuery({
+        queryKey: ['status'],
+        queryFn: fetchStatus
     });
 
-    const { data: result, isLoading: loadingCustomLabel,isError: errorGetCustomLabel, refetch: refetchGetCustomLabel} = useQuery({
-        queryKey:['get-custom-label',uploadedImage.image_key],
+    const { data: result, isLoading: loadingCustomLabel, isError: errorGetCustomLabel, refetch: refetchGetCustomLabel } = useQuery({
+        queryKey: ['get-custom-label', uploadedImage.image_key],
         queryFn: () => fetchCustomLabel(uploadedImage.image_key),
         enabled: false,
     });
 
+    const { data: result2, isLoading: loadingCustomLabel2, isError: errorGetCustomLabel2, refetch: refetchGetCustomLabel2 } = useQuery({
+        queryKey: ['get-custom-label-later', uploadedImage.image_key],
+        queryFn: () => fetchCustomLabelLater(uploadedImage.image_key),
+        enabled: false,
+    });
+
     useEffect(() => {
-        if(errorFetchStatus){
+        if (errorFetchStatus) {
             toast.error("error fetching status")
         }
-        if(errorGetCustomLabel){
+        if (errorGetCustomLabel) {
             toast.error("error detect image, make sure machine is running and image is uploaded.")
         }
-    },[errorFetchStatus,errorGetCustomLabel])
+        if (errorGetCustomLabel2) {
+            toast.error("error detect image later.")
+        }
+    }, [errorFetchStatus, errorGetCustomLabel,errorGetCustomLabel2])
+
+    useEffect(() => {
+        if (result2) {
+            toast.success("Detect image later requested successfully")
+        }
+    },[result2])
 
     useEffect(() => {
         console.log(status);
@@ -116,64 +137,77 @@ export default function Page() {
 
     return (
         <>
-            <Card>
-                <CardHeader>
-                    <CardTitle>Recognize Image</CardTitle>
-                    <div className="flex justify-start items-center gap-2">
-                    <p>skin disease detector [BETA]</p> <About/>
-                    </div>
-                    
-                    machine status : 
-                    <div className="flex gap-2 items-center justify-start">
-                        
-                        {status && <Badge>{status.Status}</Badge>}
-                        
-                        <Button size="icon" variant="outline" className="rounded-full" onClick={refetchStatus}>
-                            <ArrowPathIcon className={fetchingStatus ? "animate-spin h-5 w-5" : "h-5 w-5"} />
+            <div className="flex flex-col gap-2">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Recognize Image</CardTitle>
+                        <div className="flex justify-start items-center gap-2">
+                            <p>skin disease detector [BETA]</p> <About />
+                        </div>
+
+                        machine status :
+                        <div className="flex gap-2 items-center justify-start">
+
+                            {status && <Badge>{status.Status}</Badge>}
+
+                            <Button size="icon" variant="outline" className="rounded-full" onClick={refetchStatus}>
+                                <ArrowPathIcon className={fetchingStatus ? "animate-spin h-5 w-5" : "h-5 w-5"} />
+                            </Button>
+                        </div>
+                    </CardHeader>
+                    <CardContent>
+                        <Form {...form}>
+                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                                <FormField
+                                    control={form.control}
+                                    name="image"
+                                    render={({ field: { value, onChange, ...fieldProps } }) => (
+                                        <FormItem>
+                                            <FormLabel>File</FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    className="cursor-pointer"
+                                                    {...fieldProps}
+                                                    placeholder="Picture"
+                                                    type="file"
+                                                    accept="image/*, application/pdf"
+                                                    onChange={(event) =>
+                                                        onChange(event.target.files && event.target.files[0])
+                                                    }
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <Button type="submit">Upload</Button>
+                            </form>
+                        </Form>
+                    </CardContent>
+                    <CardContent className="flex flex-col gap-4">
+                        {loadingUploadImage && <p>loading image.....</p>}
+                        {uploadedImage?.image_url && <Image src={uploadedImage.image_url} alt="image" height={800} width={800} loading="lazy" layout="responsive" objectFit="cover" objectPosition="center" />}
+                        <Button onClick={() => refetchGetCustomLabel(uploadedImage.image_key)} >
+                            Detect Image now {loadingCustomLabel && <ArrowPathIcon className="animate-spin h-5 w-5 ml-3" />}
                         </Button>
-                    </div>
-                </CardHeader>
-                <CardContent>
-                    <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                            <FormField
-                                control={form.control}
-                                name="image"
-                                render={({ field: { value, onChange, ...fieldProps } }) => (
-                                    <FormItem>
-                                        <FormLabel>File</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                className="cursor-pointer"
-                                                {...fieldProps}
-                                                placeholder="Picture"
-                                                type="file"
-                                                accept="image/*, application/pdf"
-                                                onChange={(event) =>
-                                                    onChange(event.target.files && event.target.files[0])
-                                                }
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <Button type="submit">Upload</Button>
-                        </form>
-                    </Form>
-                </CardContent>
-                <CardContent className="flex flex-col gap-4">
-                    {loadingUploadImage && <p>loading image.....</p>}
-                    {uploadedImage?.image_url && <Image src={uploadedImage.image_url} alt="image" height={800} width={800} loading="lazy" layout="responsive" objectFit="cover" objectPosition="center" />}
-                    <Button onClick={() => refetchGetCustomLabel(uploadedImage.image_key)} >
-                        Detect Image {loadingCustomLabel && <ArrowPathIcon className="animate-spin h-5 w-5 ml-3" />}
-                    </Button>
-                    <pre>{JSON.stringify(result)}</pre>
-                    <Button >
-                        Detect Image (by request)
-                    </Button>
-                </CardContent>
-            </Card>
+
+                        <Button onClick={() => refetchGetCustomLabel2(uploadedImage.image_key)}>
+                            Detect Image later
+                        </Button>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>
+                            Result
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <pre>{JSON.stringify(result)}</pre>
+                    </CardContent>
+                </Card>
+                <ListImages/>
+            </div>
         </>
     );
 }
