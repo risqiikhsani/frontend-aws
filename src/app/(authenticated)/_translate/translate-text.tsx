@@ -35,7 +35,7 @@ export default function TranslateText({ text }: { text: string }) {
     return (
         <div className="flex flex-col  items-start mt-2">
             {/* <Button variant="link" onClick={translate} className="text-slate-800 text-xs dark:text-slate-200">see translation with AI translate</Button> */}
-            <Badge className="cursor-pointer" onClick={translate}>see translation with AI translate</Badge>
+            <Badge className="cursor-pointer bg-cyan-500" onClick={translate} >see translation with AI translate</Badge>
             {loading && <p className="text-xs">generate text....</p>}
             {translatedText && (
                 <div className="border-l-2 pl-2 border-cyan-300">

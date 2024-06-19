@@ -76,9 +76,9 @@ export default function Post({ data }: { data: any }) {
                     <CardTitle>Card Title</CardTitle>
                     <CardDescription>Card Description</CardDescription>
                 </CardHeader> */}
-                <div className="flex gap-2 p-2">
-                {data.type && <Badge variant="outline" className="bg-cyan-300">{getTypeName(data.type)}</Badge>}
-                {data.category && <Badge variant="outline" className="bg-cyan-300">{getCategoryName(data.category)}</Badge>}
+                <div className="flex gap-2 p-2 justify-end">
+                {data.type && <Badge  >{getTypeName(data.type)}</Badge>}
+                {data.category && <Badge  >{getCategoryName(data.category)}</Badge>}
                 </div>
                 <CardContent className="py-2">
                     {data.image && <Image src={data.image} alt="image" width={600} height={600} priority className="rounded-md mx-auto my-2"/>}
