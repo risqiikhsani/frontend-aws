@@ -88,7 +88,7 @@ export default function Post({ data }: { data: any }) {
 
                 <div className="flex justify-between p-2">
                     <LikePost data={data} />
-                    <Button variant="outline" size="icon" className="rounded-full">
+                    <Button variant="ghost" size="icon" className="rounded-full">
                         <ShareIcon className="h-4 w-4" />
                     </Button>
 
