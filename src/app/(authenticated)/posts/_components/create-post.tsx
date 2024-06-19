@@ -28,18 +28,34 @@ import { useQueryClient } from "@tanstack/react-query"
 import api from "@/lib/axios"
 import { Buffer } from 'buffer';
 import { Input } from "@/components/ui/input"
+import { post_category,post_type } from "@/data/data"
+
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+
 
 const formSchema = z.object({
+    type: z.string(),
+    category: z.string(),
     text: z.string().min(10),
     // image: z.instanceof(File).optional(),
     image: z.any().optional(),
 })
+
+
 
 export default function CreatePost() {
     const queryClient = useQueryClient()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
+            type: "",
+            category: "",
             text: "",
         },
     })
@@ -53,6 +69,8 @@ export default function CreatePost() {
             }
 
             const response = await api.post("/posts", {
+                type: values.type,
+                category: values.category,
                 text: values.text,
                 image: imageBase64
             })
@@ -91,6 +109,58 @@ export default function CreatePost() {
                                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                                     <FormField
                                         control={form.control}
+                                        name="type"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Type</FormLabel>
+
+                                                {/* <Textarea placeholder="Type post" {...field} /> */}
+                                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                    <FormControl>
+                                                        <SelectTrigger className="w-[180px]">
+                                                            <SelectValue placeholder="type" />
+                                                        </SelectTrigger>
+                                                    </FormControl>
+                                                    <SelectContent>
+                                                        {post_type.map((c, i) => (
+                                                            <SelectItem value={c.value}>{c.name}</SelectItem>
+                                                        ))}
+                                                    </SelectContent>
+                                                </Select>
+
+
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="category"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Category</FormLabel>
+
+                                                {/* <Textarea placeholder="Category post" {...field} /> */}
+                                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                    <FormControl>
+                                                        <SelectTrigger className="w-[180px]">
+                                                            <SelectValue placeholder="category" />
+                                                        </SelectTrigger>
+                                                    </FormControl>
+                                                    <SelectContent>
+                                                        {post_category.map((c, i) => (
+                                                            <SelectItem value={c.value}>{c.name}</SelectItem>
+                                                        ))}
+                                                    </SelectContent>
+                                                </Select>
+
+
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
                                         name="text"
                                         render={({ field }) => (
                                             <FormItem>
@@ -98,7 +168,7 @@ export default function CreatePost() {
                                                 <FormControl>
                                                     <Textarea placeholder="Show us your feelings" {...field} />
                                                 </FormControl>
-                                                <FormDescription>Write a post to publish.</FormDescription>
+
                                                 <FormMessage />
                                             </FormItem>
                                         )}
@@ -108,7 +178,7 @@ export default function CreatePost() {
                                         name="image"
                                         render={({ field: { value, onChange, ...fieldProps } }) => (
                                             <FormItem>
-                                                <FormLabel>File</FormLabel>
+                                                <FormLabel>Image</FormLabel>
                                                 <FormControl>
                                                     <Input
                                                         className="cursor-pointer"
