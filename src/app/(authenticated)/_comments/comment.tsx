@@ -41,7 +41,7 @@ export default function Comment({ data }: { data: any }) {
             <Card className="flex border-none   ">
                 <Button variant="ghost" className="">
                     <Avatar>
-                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarImage src={data.user_detail.profile_image_url} />
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                 </Button>
