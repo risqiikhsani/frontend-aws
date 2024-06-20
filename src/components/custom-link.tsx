@@ -11,7 +11,7 @@ export default function CustomLink({ href, children }:{ href:string, children:Re
         // <Link href={href} className={`flex p-2 items-center justify-left rounded-lg text-sm ${isActive ? 'bg-blue-600 text-white font-bold' : ' text-zinc-950 hover:bg-gray-100 dark:text-slate-100 dark:hover:bg-blue-600'}`}>
         //     {children}
         // </Link>
-        <Link href={href} className={`flex p-2 items-center justify-left rounded-lg text-sm ${isActive ? ' font-bold' : ' text-slate-600 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-blue-600'}`}>
+        <Link href={href} className={`flex p-2 items-center justify-left rounded-lg text-sm ${isActive ? ' text-blue-600 font-bold' : ' text-slate-600 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-blue-600'}`}>
         {children}
     </Link>
     );
