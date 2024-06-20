@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { ChatBubbleBottomCenterIcon, GlobeAltIcon, NewspaperIcon, PhotoIcon } from "@heroicons/react/24/outline";
 import { Separator } from "./ui/separator";
 import CustomLink from "./custom-link";
+import { Badge } from "./ui/badge";
 
 export default function LeftAppBar() {
     return (
@@ -12,7 +13,7 @@ export default function LeftAppBar() {
 
                     <Separator />
 
-                    <p className="text-xs">Features</p>
+                    <Badge className="text-xs">Features</Badge>
 
                     <CustomLink href="/news">
                         Health News <NewspaperIcon className="h-6 w-6 mx-2" />
@@ -25,7 +26,7 @@ export default function LeftAppBar() {
 
                     <Separator />
 
-                    <p className="text-xs">Add-on Features</p>
+                    <Badge className="text-xs">Add-on Features</Badge>
 
                     <CustomLink href="/chatbot">
                         Virtual Assistance <ChatBubbleBottomCenterIcon className="h-6 w-6 mx-2" />
@@ -41,7 +42,7 @@ export default function LeftAppBar() {
 
                     <Separator />
 
-                    <p className="text-xs">More</p>
+                    <Badge className="text-xs">More</Badge>
 
                     <CustomLink href="/settings">
                         Settings

@@ -4,6 +4,7 @@ import { Bars3Icon, ChatBubbleBottomCenterIcon, GlobeAltIcon, NewspaperIcon, Pho
 import { Separator } from "./ui/separator";
 import CustomLink from "./custom-link";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
+import { Badge } from "./ui/badge";
 
 export default function LeftAppBarMobile() {
     return (
@@ -17,24 +18,19 @@ export default function LeftAppBarMobile() {
                 <SheetContent side="left">
                     <nav className="flex flex-col space-y-2 mt-4">
                         <Separator />
-                        Features
-
+                        <Badge>Features</Badge>
                         
+
                         <CustomLink href="/news">
                             Health News <NewspaperIcon className="h-6 w-6 mx-2" />
                         </CustomLink>
-                        
-                        
-
-
-
 
                         <CustomLink href="/posts">
                             Feeds <GlobeAltIcon className="h-6 w-6 mx-2" />
                         </CustomLink>
 
                         <Separator />
-                        Add-on features
+                        <Badge>Add-on Features</Badge>
 
                         <CustomLink href="/chatbot">
                             Virtual Assistance <ChatBubbleBottomCenterIcon className="h-6 w-6 mx-2" />
@@ -49,13 +45,14 @@ export default function LeftAppBarMobile() {
                         </CustomLink>
 
                         <Separator />
-                        More
+                        <Badge>More</Badge>
 
                         <CustomLink href="/settings">
                             Settings
                         </CustomLink>
 
                         <Separator />
+                        <Badge>Informations</Badge>
 
                         <CustomLink href="/about">
                             About this website
