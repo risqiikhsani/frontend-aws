@@ -84,9 +84,6 @@ export default function Page() {
     }, [errorFetchStatus, errorGetCustomLabel,errorGetCustomLabel2])
 
     useEffect(() => {
-        if (status) {
-            toast.info("machine status fetched")
-        }
         if (result) {
             toast.success("Detected image successfully")
         }
@@ -95,7 +92,7 @@ export default function Page() {
             form.reset()
             setUploadedImage({})
         }
-    },[status,result,result2])
+    },[result,result2])
 
     useEffect(() => {
         console.log(status);
