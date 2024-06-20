@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { Bars3Icon, ChatBubbleBottomCenterIcon, GlobeAltIcon, NewspaperIcon, PhotoIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, ChatBubbleBottomCenterIcon, ChatBubbleLeftRightIcon, GlobeAltIcon, NewspaperIcon, PhotoIcon } from "@heroicons/react/24/outline";
 import { Separator } from "./ui/separator";
 import CustomLink from "./custom-link";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
@@ -33,7 +33,7 @@ export default function LeftAppBarMobile() {
                         <Badge>Add-on Features</Badge>
 
                         <CustomLink href="/chatbot">
-                            Virtual Assistance <ChatBubbleBottomCenterIcon className="h-6 w-6 mx-2" />
+                            Virtual Assistance <ChatBubbleLeftRightIcon className="h-6 w-6 mx-2" />
                         </CustomLink>
 
                         <CustomLink href="/chatbot_with_kb">

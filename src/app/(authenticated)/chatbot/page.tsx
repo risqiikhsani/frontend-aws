@@ -27,6 +27,8 @@ import { toast } from "sonner"
 import { useQueryClient } from "@tanstack/react-query"
 import api from "@/lib/axios"
 import { MessageChatBotBasicType } from "@/types/types"
+import TransitionRightToLeft from "@/components/animation/transition-right-to-left"
+import TransitionLeftToRight from "@/components/animation/transition-left-to-right"
 
 const formSchema = z.object({
     text: z.string(),
@@ -88,9 +90,25 @@ export default function Chatbot() {
                 </div>
                 <div className="md:px-6 py-4 min-h-96">
                     {chatHistory.map((message: MessageChatBotBasicType, index: number) => (
-                        <div key={index} className={`mb-4 p-4 max-w-md rounded-lg shadow-xl border-2 ${message.role === "user" ? "bg-blue-500 text-white self-end ml-auto" : " whitespace-pre-wrap break-words"}`}>
-                            <p>{message.content}</p>
-                        </div>
+                        // <TransitionRightToLeft>
+                        //     <div key={index} className={`mb-4 p-4 max-w-md rounded-lg shadow-xl border-2 ${message.role === "user" ? "bg-blue-500 text-white self-end ml-auto" : " whitespace-pre-wrap break-words"}`}>
+                        //         <p>{message.content}</p>
+                        //     </div>
+                        // </TransitionRightToLeft>
+                        message.role === "user" ? (
+                            <TransitionRightToLeft key={index}>
+                                <div className={`mb-4 p-4 max-w-md rounded-lg shadow-xl border-2 bg-blue-500 text-white self-end ml-auto whitespace-pre-wrap break-words`}>
+                                    <p>{message.content}</p>
+                                </div>
+                            </TransitionRightToLeft>
+                        ) : (
+                            <TransitionLeftToRight key={index}>
+                                <div className={`mb-4 p-4 max-w-md rounded-lg shadow-xl border-2 whitespace-pre-wrap break-words`}>
+                                    <p>{message.content}</p>
+                                </div>
+                            </TransitionLeftToRight>
+                        )
+
                     ))}
                     {loading && <p className="text-gray-500">Getting message...</p>}
                     <div ref={messagesEndRef} />
