@@ -22,7 +22,7 @@ import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/auth";
 import { useEffect, useState } from "react";
 import { Buffer } from 'buffer';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import About from "./_components/about";
@@ -84,10 +84,18 @@ export default function Page() {
     }, [errorFetchStatus, errorGetCustomLabel,errorGetCustomLabel2])
 
     useEffect(() => {
-        if (result2) {
-            toast.success("Detect image later requested successfully")
+        if (status) {
+            toast.info("machine status fetched")
         }
-    },[result2])
+        if (result) {
+            toast.success("Detected image successfully")
+        }
+        if (result2) {
+            toast.success("Detect image later successfully")
+            form.reset()
+            setUploadedImage({})
+        }
+    },[status,result,result2])
 
     useEffect(() => {
         console.log(status);
@@ -135,9 +143,17 @@ export default function Page() {
         }
     };
 
+    const detectImageNow = () => {
+        refetchGetCustomLabel(uploadedImage.image_key)
+    }
+
+    const detectImageLater = () => {
+        refetchGetCustomLabel2(uploadedImage.image_key)
+    }
+
     return (
         <>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-4">
                 <Card>
                     <CardHeader>
                         <CardTitle>Recognize Image</CardTitle>
@@ -148,7 +164,7 @@ export default function Page() {
                         machine status :
                         <div className="flex gap-2 items-center justify-start">
 
-                            {status && <Badge>{status.Status}</Badge>}
+                            {status && <Badge variant="destructive">{status.Status}</Badge>}
 
                             <Button size="icon" variant="outline" className="rounded-full" onClick={refetchStatus}>
                                 <ArrowPathIcon className={fetchingStatus ? "animate-spin h-5 w-5" : "h-5 w-5"} />
@@ -187,13 +203,22 @@ export default function Page() {
                     <CardContent className="flex flex-col gap-4">
                         {loadingUploadImage && <p>loading image.....</p>}
                         {uploadedImage?.image_url && <Image src={uploadedImage.image_url} alt="image" height={800} width={800} loading="lazy" layout="responsive" objectFit="cover" objectPosition="center" />}
-                        <Button onClick={() => refetchGetCustomLabel(uploadedImage.image_key)} >
+                        
+                        <Button onClick={detectImageNow} disabled={status && status.Status == "STOPPED"}>
                             Detect Image now {loadingCustomLabel && <ArrowPathIcon className="animate-spin h-5 w-5 ml-3" />}
                         </Button>
 
-                        <Button onClick={() => refetchGetCustomLabel2(uploadedImage.image_key)}>
+                        <CardDescription>
+                            Detect image now can be processed if machine state is running, otherwise detect image later
+                        </CardDescription>
+
+                        <Button onClick={detectImageLater} disabled={uploadedImage.image_key == null}>
                             Detect Image later
                         </Button>
+
+                        <CardDescription>
+                            Detect image later will save your image and process your image later, when machine state runs.
+                        </CardDescription>
                     </CardContent>
                 </Card>
                 <Card>
