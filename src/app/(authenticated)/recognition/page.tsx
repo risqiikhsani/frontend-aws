@@ -162,9 +162,7 @@ export default function Page() {
                         <div className="flex gap-2 items-center justify-start">
 
                             {status && <Badge variant="destructive">{status.Status}</Badge>}
-                            {/* {status && status.Status == "STARTING"} */}
-                            {/* {status && status.Status == "STOPPED"} */}
-                            {/* {status && status.Status == "RUNNING"} */}
+
 
                             <Button size="icon" variant="outline" className="rounded-full" onClick={refetchStatus}>
                                 <ArrowPathIcon className={fetchingStatus ? "animate-spin h-5 w-5" : "h-5 w-5"} />
