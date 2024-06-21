@@ -81,7 +81,7 @@ export default function Page() {
         if (errorGetCustomLabel2) {
             toast.error("error detect image later.")
         }
-    }, [errorFetchStatus, errorGetCustomLabel,errorGetCustomLabel2])
+    }, [errorFetchStatus, errorGetCustomLabel, errorGetCustomLabel2])
 
     useEffect(() => {
         if (result) {
@@ -92,7 +92,7 @@ export default function Page() {
             form.reset()
             setUploadedImage({})
         }
-    },[result,result2])
+    }, [result, result2])
 
     useEffect(() => {
         console.log(status);
@@ -162,6 +162,9 @@ export default function Page() {
                         <div className="flex gap-2 items-center justify-start">
 
                             {status && <Badge variant="destructive">{status.Status}</Badge>}
+                            {/* {status && status.Status == "STARTING"} */}
+                            {/* {status && status.Status == "STOPPED"} */}
+                            {/* {status && status.Status == "RUNNING"} */}
 
                             <Button size="icon" variant="outline" className="rounded-full" onClick={refetchStatus}>
                                 <ArrowPathIcon className={fetchingStatus ? "animate-spin h-5 w-5" : "h-5 w-5"} />
@@ -199,9 +202,19 @@ export default function Page() {
                     </CardContent>
                     <CardContent className="flex flex-col gap-4">
                         {loadingUploadImage && <p>loading image.....</p>}
-                        {uploadedImage?.image_url && <Image src={uploadedImage.image_url} alt="image" height={800} width={800} loading="lazy" layout="responsive" objectFit="cover" objectPosition="center" />}
-                        
-                        <Button onClick={detectImageNow} disabled={status && status.Status == "STOPPED"}>
+                        {uploadedImage?.image_url && <Image
+                            src={uploadedImage.image_url}
+                            alt="image"
+                            height={400}
+                            width={400}
+                            layout="responsive"
+                            objectFit="cover"
+                            objectPosition="center"
+                            priority
+                            loading="eager"
+                        />}
+
+                        <Button onClick={detectImageNow} disabled={status && status.Status != "RUNNING"}>
                             Detect Image now {loadingCustomLabel && <ArrowPathIcon className="animate-spin h-5 w-5 ml-3" />}
                         </Button>
 
@@ -225,10 +238,20 @@ export default function Page() {
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <pre>{JSON.stringify(result)}</pre>
+                        {result && result.response && result.response.length > 0 ? (
+                            result.response.map((item: any, index: number) => (
+                                <div key={index}>
+                                    <div>Name: {item.Name}</div>
+                                    <div>Confidence: {item.Confidence} %</div>
+                                </div>
+                            ))
+                        ) : (
+                            <div>No results found</div>
+                        )}
+
                     </CardContent>
                 </Card>
-                <ListImages/>
+                <ListImages />
             </div>
         </>
     );

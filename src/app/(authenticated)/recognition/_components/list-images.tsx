@@ -14,6 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import Link from "next/link";
+import { convertToCloudFrontUrl } from "@/lib/cloudfront";
 
 
 const fetchImages = async () => {
@@ -47,7 +48,8 @@ export default function ListImages() {
                             <TableRow>
                                 <TableHead className="w-[100px]">image</TableHead>
                                 <TableHead>status</TableHead>
-                                <TableHead className="text-right">time</TableHead>
+                                <TableHead>time</TableHead>
+                                <TableHead>Result</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -55,11 +57,12 @@ export default function ListImages() {
                             {data && data.map((image: any, index: number) => (
                                 <TableRow key={index}>
                                     <TableCell className="font-medium">
-                                        <Link href={image.image}>image link</Link>
+                                        <Link href={convertToCloudFrontUrl(image.image)}>link</Link>
 
                                     </TableCell>
                                     <TableCell>{image.processed ? "done" : "later"}</TableCell>
-                                    <TableCell className="text-right">{ConvertTime(image.time_creation)}</TableCell>
+                                    <TableCell>{ConvertTime(image.time_creation)}</TableCell>
+                                    <TableCell>{image.processed ? image.result_name : "-"}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

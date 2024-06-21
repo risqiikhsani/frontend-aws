@@ -40,6 +40,7 @@ import Image from "next/image"
 import TranslateText from "../../_translate/translate-text"
 import { Badge } from "@/components/ui/badge"
 import { getCategoryName, getTypeName } from "@/data/convert-data"
+import { convertToCloudFrontUrl } from "@/lib/cloudfront"
 
 
 
@@ -81,7 +82,7 @@ export default function Post({ data }: { data: any }) {
                 {data.category && <Badge  >{getCategoryName(data.category)}</Badge>}
                 </div>
                 <CardContent className="py-2">
-                    {data.image && <Image src={data.image} alt="image" width={600} height={600} priority className="rounded-md mx-auto my-2"/>}
+                    {data.image && <Image src={convertToCloudFrontUrl(data.image)} alt="image" width={600} height={600} priority loading="eager" className="rounded-md mx-auto my-2"/>}
                     <p>{data.text}</p>
                     <TranslateText text={data.text}/>
                 </CardContent>
