@@ -32,7 +32,7 @@ export default function About() {
                             <br />
                             This Chat Bot was created for learning purpose to build RAG AI application using knowledge base.
                             <br />
-                            Here&#39;s the list of topics you can ask based on our current database.
+                            Here are the list of topics you can ask based on our current database.
                             <ul>
                                 <li>
                                 - Ask about this website
