@@ -27,7 +27,7 @@ export default function About() {
                     <DialogHeader>
                         <DialogTitle>Skin Disease Detector [BETA version]</DialogTitle>
                         <DialogDescription className="text-left">
-                            Needs to mention that while we're still working on it and improving this, you can still use this feature to detect skin disease by your image.
+                            Needs to mention that while we are still working on it and improving this, you can still use this feature to detect skin disease by your image.
                             This is the list of skin diseases that can be detected at the moment :
                             <ul>
                                 <li>
