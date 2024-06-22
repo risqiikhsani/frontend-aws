@@ -12,5 +12,8 @@ export const convertToCloudFrontUrl = (s3Url: string) => {
       
       return convertedUrl;
     }
+    else{
+      return "";
+    }
 
   };

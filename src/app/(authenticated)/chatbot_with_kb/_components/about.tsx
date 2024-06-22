@@ -27,12 +27,12 @@ export default function About() {
                     <DialogHeader>
                         <DialogTitle>Healthcare Chat Bot [BETA version]</DialogTitle>
                         <DialogDescription className="text-left">
-                            Healthcare Chat Bot is quite different compared to virtual assistance, this AI BOT uses our own databases.
+                            Healthcare Chat Bot is quite different compared to virtual assistance, this AI BOT uses our own databases,
                             so this Bot might not be able to answer particular questions due to the lack of database.
                             <br />
                             This Chat Bot was created for learning purpose to build RAG AI application using knowledge base.
                             <br />
-                            Here's the list of topic you can ask based on our current database.
+                            Here&#39;s the list of topics you can ask based on our current database.
                             <ul>
                                 <li>
                                 - Ask about this website
@@ -50,13 +50,13 @@ export default function About() {
                                 - Ear diseases
                                 </li>
                                 <li>
-                                - Eyes diseases
+                                - Eye diseases
                                 </li>
                                 <li>
                                 - Teeth diseases
                                 </li>
                                 <li>
-                                - Some informations about some medicine
+                                - Some information about some medicine
                                 </li>
                             </ul>
                         </DialogDescription>

@@ -123,7 +123,7 @@ export default function CreatePost() {
                                                     </FormControl>
                                                     <SelectContent>
                                                         {post_type.map((c, i) => (
-                                                            <SelectItem value={c.value}>{c.name}</SelectItem>
+                                                            <SelectItem key={i} value={c.value}>{c.name}</SelectItem>
                                                         ))}
                                                     </SelectContent>
                                                 </Select>
@@ -149,7 +149,7 @@ export default function CreatePost() {
                                                     </FormControl>
                                                     <SelectContent>
                                                         {post_category.map((c, i) => (
-                                                            <SelectItem value={c.value}>{c.name}</SelectItem>
+                                                            <SelectItem key={i} value={c.value}>{c.name}</SelectItem>
                                                         ))}
                                                     </SelectContent>
                                                 </Select>
