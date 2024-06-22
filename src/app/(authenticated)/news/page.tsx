@@ -66,7 +66,7 @@ export default async function Page({
                                 <CardTitle>{item.title}</CardTitle>
                                 {item.urlToImage ?
                                     <Suspense fallback={<p>Loading image...</p>}>
-                                        <Image src={item.urlToImage} width={600} height={600} alt="image" priority className="rounded-md w-full" />
+                                        <Image src={item.urlToImage} width={400} height={400} alt="image" priority loading="eager" className="rounded-md w-full" />
                                     </Suspense>
                                     : null}
                                 <CardDescription>{item.description}</CardDescription>

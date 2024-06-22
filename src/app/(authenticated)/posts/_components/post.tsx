@@ -40,6 +40,7 @@ import Image from "next/image"
 import TranslateText from "../../_translate/translate-text"
 import { Badge } from "@/components/ui/badge"
 import { getCategoryName, getTypeName } from "@/data/convert-data"
+import { convertToCloudFrontUrl } from "@/lib/cloudfront"
 
 
 
@@ -56,7 +57,7 @@ export default function Post({ data }: { data: any }) {
                 <div className="flex justify-left items-center gap-4">
                     <Button variant="ghost" className="flex gap-2 justify-center items-center py-6 rounded-xl">
                         <Avatar>
-                            <AvatarImage src={data.user_detail.profile_image_url} />
+                            <AvatarImage src={convertToCloudFrontUrl(data.user_detail.profile_image_url)} />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
                         <p className="font-bold">{data.user_detail.name}</p>
@@ -81,7 +82,7 @@ export default function Post({ data }: { data: any }) {
                 {data.category && <Badge  >{getCategoryName(data.category)}</Badge>}
                 </div>
                 <CardContent className="py-2">
-                    {data.image && <Image src={data.image} alt="image" width={600} height={600} priority className="rounded-md mx-auto my-2"/>}
+                    {data.image && <Image src={convertToCloudFrontUrl(data.image)} alt="image" width={600} height={600} priority loading="eager" className="rounded-md mx-auto my-2"/>}
                     <p>{data.text}</p>
                     <TranslateText text={data.text}/>
                 </CardContent>
