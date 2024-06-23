@@ -23,6 +23,7 @@ import Filter from "./_page/filter"
 import { Suspense } from 'react';
 import { ConvertTime } from "@/lib/time"
 import { Badge } from "@/components/ui/badge"
+import ImageWithLoader from "@/components/image-with-loader"
 
 export default async function Page({
     searchParams,
@@ -34,7 +35,9 @@ export default async function Page({
 
     const country = searchParams?.country || 'us';
 
-    const dynamicData = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/news?country=${country}`, { cache: 'no-store' })
+    const dynamicData = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/news?country=${country}`, 
+        // { cache: 'no-store' }
+    )
     const data = await dynamicData.json();
 
     return (
@@ -64,11 +67,19 @@ export default async function Page({
                                 <p className="font-bold underline">{item.source.name}</p>
 
                                 <CardTitle>{item.title}</CardTitle>
-                                {item.urlToImage ?
+                                {/* {item.urlToImage ?
                                     <Suspense fallback={<p>Loading image...</p>}>
                                         <Image src={item.urlToImage} width={400} height={400} alt="image" priority loading="eager" className="rounded-md w-full" />
                                     </Suspense>
-                                    : null}
+                                    : null} */}
+
+                                {item.urlToImage && (
+                                    <ImageWithLoader
+                                        src={item.urlToImage}
+                                        alt={item.title}
+                                        className="w-full"
+                                    />
+                                )}
                                 <CardDescription>{item.description}</CardDescription>
                             </CardHeader>
                             <CardContent className="flex">
