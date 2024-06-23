@@ -105,7 +105,7 @@ export default function UpdateProfile({ data }: { data: any }) {
                         name="name"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Name</FormLabel>
+                                <FormLabel>Edit Name</FormLabel>
                                 <FormControl>
                                     <Input placeholder="Your name" {...field} disabled={isUpdate == false} />
                                 </FormControl>
@@ -117,7 +117,7 @@ export default function UpdateProfile({ data }: { data: any }) {
                         name="profileImage"
                         render={({ field: { value, onChange, ...fieldProps } }) => (
                             <FormItem>
-                                <FormLabel>File</FormLabel>
+                                <FormLabel>Edit Photo Profile</FormLabel>
                                 <FormControl>
                                     <Input
                                         disabled={isUpdate == false}
