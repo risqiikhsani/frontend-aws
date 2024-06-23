@@ -28,6 +28,7 @@ import Image from "next/image";
 import About from "./_components/about";
 import { Separator } from "@radix-ui/react-separator";
 import ListImages from "./_components/list-images";
+import ImageWithLoader from "@/components/image-with-loader";
 
 const formSchema = z.object({
     // image: z.instanceof(File).optional(),
@@ -112,6 +113,11 @@ export default function Page() {
     });
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        console.log(values.image)
+        if (!values.image) {
+            toast.error('Please select an image to upload');
+            return;
+        }
         setLoadingUploadImage(true);
         try {
             let imageBase64 = "";
@@ -200,17 +206,29 @@ export default function Page() {
                     </CardContent>
                     <CardContent className="flex flex-col gap-4">
                         {loadingUploadImage && <p>loading image.....</p>}
-                        {uploadedImage?.image_url && <Image
-                            src={uploadedImage.image_url}
-                            alt="image"
-                            height={400}
-                            width={400}
-                            layout="responsive"
-                            objectFit="cover"
-                            objectPosition="center"
-                            priority
-                            loading="eager"
-                        />}
+                        {/* {uploadedImage?.image_url &&
+                            <div className="">
+                                <Image
+                                    src={uploadedImage.image_url}
+                                    alt="image"
+                                    height={400}
+                                    width={400}
+                                    layout="responsive"
+                                    objectFit="cover"
+                                    objectPosition="center"
+                                    priority
+                                    loading="eager"
+                                />
+                            </div>
+                        } */}
+
+                        {uploadedImage?.image_url && (
+                            <ImageWithLoader
+                                src={uploadedImage.image_url}
+                                alt="image"
+                                className="w-full"
+                            />
+                        )}
 
                         <Button onClick={detectImageNow} disabled={status && status.Status != "RUNNING"}>
                             Detect Image now {loadingCustomLabel && <ArrowPathIcon className="animate-spin h-5 w-5 ml-3" />}
