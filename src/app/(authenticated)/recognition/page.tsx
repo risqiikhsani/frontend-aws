@@ -29,6 +29,7 @@ import About from "./_components/about";
 import { Separator } from "@radix-ui/react-separator";
 import ListImages from "./_components/list-images";
 import ImageWithLoader from "@/components/image-with-loader";
+import TextWithCopy from "./_components/text-with-copy";
 
 const formSchema = z.object({
     // image: z.instanceof(File).optional(),
@@ -183,7 +184,7 @@ export default function Page() {
                                     name="image"
                                     render={({ field: { value, onChange, ...fieldProps } }) => (
                                         <FormItem>
-                                            <FormLabel>File</FormLabel>
+                                            <FormLabel>Upload Image</FormLabel>
                                             <FormControl>
                                                 <Input
                                                     className="cursor-pointer"
@@ -259,6 +260,7 @@ export default function Page() {
                                 <div key={index}>
                                     <div>Name: {item.Name}</div>
                                     <div>Confidence: {item.Confidence} %</div>
+                                    <TextWithCopy text={item.Name}/>
                                 </div>
                             ))
                         ) : (
