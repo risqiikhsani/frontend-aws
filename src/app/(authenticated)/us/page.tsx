@@ -1,4 +1,3 @@
-"use client"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -17,39 +16,42 @@ import {
 import { Separator } from "@/components/ui/separator"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import ImageWithLoader from "@/components/image-with-loader"
+
+const users = [
+    {
+        name: "Risqi Ikhsani",
+        university: "Universitas Teknologi Digital Indonesia",
+    },
+    {
+        name: "Zaki Nedhiansyah",
+        university: "Universitas Teknologi Digital Indonesia"
+    },
+    {
+        name: "Wahyu Purnomo",
+        university: "Universitas Muhammadiyah Sumatera Utara",
+    },
+    {
+        name: "M. Koirul Nizam",
+        university: "Universitas Negeri Surabaya",
+    },
+    {
+        name: "Krisna Aditya",
+        university: "Universitas Muhammadiyah Sumatera Utara"
+    },
+    {
+        name: "Nabilah Alfia Budi Putri",
+        university: "Institut Teknologi dan Bisnis Ahmad Dahlan"
+    },
+    {
+        name: "Mohammad Sanggarma Dharma Wijaya",
+        university: "Politeknik Elektronika Negeri Surabaya"
+    }
+
+]
 
 export default function Page() {
-    const [users, setUsers] = useState([
-        {
-            name: "Risqi Ikhsani",
-            university: "Universitas Teknologi Digital Indonesia",
-        },
-        {
-            name: "Zaki Nedhiansyah",
-            university: "Universitas Teknologi Digital Indonesia"
-        },
-        {
-            name: "Wahyu Purnomo",
-            university: "Universitas Muhammadiyah Sumatera Utara",
-        },
-        {
-            name: "M. Koirul Nizam",
-            university: "Universitas Negeri Surabaya",
-        },
-        {
-            name: "Krisna Aditya",
-            university: "Universitas Muhammadiyah Sumatera Utara"
-        },
-        {
-            name: "Nabilah Alfia Budi Putri",
-            university: "Institut Teknologi dan Bisnis Ahmad Dahlan"
-        },
-        {
-            name: "Mohammad Sanggarma Dharma Wijaya",
-            university: "Politeknik Elektronika Negeri Surabaya"
-        }
 
-    ])
     return (
         <>
             <div className="flex flex-col gap-2">
@@ -91,15 +93,19 @@ export default function Page() {
                          
                     </CardHeader>
 
-                    <div className="bg-slate-200 m-10">
-                        <Image src="/pictures/TIMacademy.png" alt="image" width={600} height={600} priority loading="eager" className="rounded-md mx-auto my-2" />
-
+                    <div className="bg-slate-200">
+                        <Image src="/pictures/TIMacademy.png" alt="image" width={600} height={600} priority loading="eager" className="rounded-md w-60 h-30" />
                     </div>
                 </Card>
                 <Separator />
                 <h1 className="font-bold text-2xl">Final cloud design</h1>
-                <Image src="/pictures/cloud design.png" alt="image" width={1000} height={1000} priority loading="eager" className="rounded-md mx-auto my-2" />
-
+                {/* <ImageWithLoader
+                src="/pictures/cloud-design.png"
+                alt="image"
+                className="w-full"
+                /> */}
+                <Image src="/pictures/designcloud.png"
+                alt="image" priority width={800} height={800} className="rounded-md"/>
             </div>
 
         </>
