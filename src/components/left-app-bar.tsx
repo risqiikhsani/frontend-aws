@@ -37,7 +37,7 @@ export default function LeftAppBar() {
                     </CustomLink>
 
                     <CustomLink href="/recognition">
-                        Image recognition <PhotoIcon className="h-6 w-6 mx-2" />
+                        Image Recognition <PhotoIcon className="h-6 w-6 mx-2" />
                     </CustomLink>
 
                     <Separator />
