@@ -20,7 +20,7 @@ export default function LeftAppBarMobile() {
                         <Separator />
                         <Badge>Features</Badge>
                         
-
+                        
                         <CustomLink href="/news">
                             Health News <NewspaperIcon className="h-6 w-6 mx-2" />
                         </CustomLink>
@@ -37,11 +37,11 @@ export default function LeftAppBarMobile() {
                         </CustomLink>
 
                         <CustomLink href="/chatbot_with_kb">
-                            Chat bot <ChatBubbleBottomCenterIcon className="h-6 w-6 mx-2" />
+                            Medical Chat Bot <ChatBubbleBottomCenterIcon className="h-6 w-6 mx-2" />
                         </CustomLink>
 
                         <CustomLink href="/recognition">
-                            Image recognition <PhotoIcon className="h-6 w-6 mx-2" />
+                            Image Recognition <PhotoIcon className="h-6 w-6 mx-2" />
                         </CustomLink>
 
                         <Separator />
